@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Recipe App</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🍽️ My Recipe App</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/add">Add Recipe</a>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h2>All Recipes</h2>
+            <div class="recipe-grid">
+                <% recipes.forEach(recipe => { %>
+                    <div class="recipe-card">
+                        <h3><a href="/recipe/<%= recipe.id %>"><%= recipe.title %></a></h3>
+                        <div class="recipe-meta">
+                            <span>🍽️ Serves: <%= recipe.serves %></span>
+                            <span>⏱️ Prep: <%= recipe.prepTime %></span>
+                            <span>🔥 Cook: <%= recipe.cookTime %></span>
+                        </div>
+                        <div class="recipe-ingredients">
+                            <strong>Key Ingredients:</strong>
+                            <% const displayIngredients = recipe.ingredients.slice(0, 3) %>
+                            <% displayIngredients.forEach(ingredient => { %>
+                                <span class="ingredient-tag"><%= ingredient %></span>
+                            <% }) %>
+                            <% if (recipe.ingredients.length > 3) { %>
+                                <span class="more-ingredients">+<%= recipe.ingredients.length - 3 %> more</span>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
