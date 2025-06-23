@@ -47,9 +47,101 @@ docker-compose up -d
 # Build the image
 docker build -t my-recipe-app .
 
-# Run the container
-docker run -p 3000:3000 my-recipe-app
+# Run the container locally (for development)
+docker run -p 3000:80 my-recipe-app
 ```
+
+## Azure Deployment
+
+This app is designed to be deployed on Azure with persistent storage. The deployment includes:
+
+- **Azure Container Registry (ACR)** for storing the container image
+- **Azure Container Instances (ACI)** for running the container 24/7
+- **Azure File Share** mounted at `/app/data` for persistent recipe storage
+- **Australia East** region deployment for optimal performance
+
+### Prerequisites
+
+- Azure CLI installed and configured
+- An active Azure subscription
+- Docker installed locally
+
+### Automated Deployment
+
+Run the provided deployment script:
+
+```bash
+# Make the script executable
+chmod +x azure-deploy.sh
+
+# Deploy to Azure
+./azure-deploy.sh
+```
+
+The script will:
+1. Create a resource group and all necessary Azure resources
+2. Build and push the container image to Azure Container Registry
+3. Deploy the container to Azure Container Instances with persistent storage
+4. Provide you with the public URL to access your deployed app
+
+### Manual Deployment Steps
+
+If you prefer to deploy manually:
+
+1. **Create Azure Resources:**
+```bash
+# Set variables
+RESOURCE_GROUP="recipe-app-rg"
+LOCATION="australiaeast"
+ACR_NAME="myrecipeappacr$(date +%s)"
+STORAGE_ACCOUNT="recipestorage$(date +%s)"
+
+# Create resource group
+az group create --name $RESOURCE_GROUP --location $LOCATION
+
+# Create container registry
+az acr create --name $ACR_NAME --resource-group $RESOURCE_GROUP --sku Basic
+
+# Create storage account and file share
+az storage account create --name $STORAGE_ACCOUNT --resource-group $RESOURCE_GROUP --location $LOCATION --sku Standard_LRS
+STORAGE_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP --account-name $STORAGE_ACCOUNT --query '[0].value' -o tsv)
+az storage share create --name recipe-data --account-name $STORAGE_ACCOUNT --account-key $STORAGE_KEY
+```
+
+2. **Build and Push Image:**
+```bash
+# Build and push to ACR
+az acr build --registry $ACR_NAME --image my-recipe-app:latest .
+```
+
+3. **Deploy Container:**
+```bash
+# Deploy to ACI with persistent storage
+az container create \
+  --name recipe-app-container \
+  --resource-group $RESOURCE_GROUP \
+  --image $ACR_NAME.azurecr.io/my-recipe-app:latest \
+  --registry-login-server $ACR_NAME.azurecr.io \
+  --ports 80 \
+  --dns-name-label recipe-app-$(date +%s) \
+  --azure-file-volume-account-name $STORAGE_ACCOUNT \
+  --azure-file-volume-account-key $STORAGE_KEY \
+  --azure-file-volume-share-name recipe-data \
+  --azure-file-volume-mount-path /app/data \
+  --environment-variables PORT=80 NODE_ENV=production
+```
+
+### Cost Optimization
+
+The deployment is optimized for minimal cost while maintaining 24/7 availability:
+- **Basic SKU** for Container Registry (lowest cost tier)
+- **0.5 CPU, 1GB RAM** for Container Instances (minimal resources)
+- **Standard_LRS** storage (lowest redundancy, lowest cost)
+- **Single region deployment** to avoid cross-region charges
+
+### Persistent Storage
+
+With Azure File Share mounted at `/app/data`, new recipes added through the web interface are now **persistent** and will survive container restarts. The app automatically saves and loads recipes from the mounted file share.
 
 ## Recipe Structure
 
@@ -66,7 +158,7 @@ Each recipe includes the following sections:
 2. Fill in the recipe details
 3. Submit the form
 
-**Note**: New recipes added through the web interface are stored in memory only and will be lost when the container restarts. This is by design as specified in the requirements.
+**Note**: With Azure deployment and persistent storage, new recipes added through the web interface are now saved permanently to the Azure File Share and will persist across container restarts.
 
 ## Initial Recipes
 

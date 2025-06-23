@@ -6,11 +6,17 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --production
+RUN npm install --production && npm cache clean --force
 
 # Copy application code
 COPY . .
 
-EXPOSE 3000
+# Create data directory for persistent storage
+RUN mkdir -p /app/data
+
+EXPOSE 80
+
+# Set default port to 80 for Azure deployment
+ENV PORT=80
 
 CMD ["npm", "start"]

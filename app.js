@@ -1,12 +1,36 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const recipes = require('./data/recipes.json');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// In-memory storage for new recipes
+// File path for persistent runtime recipes (will be on Azure File Share)
+const RUNTIME_RECIPES_FILE = path.join(__dirname, 'data', 'runtime-recipes.json');
+
+// Load runtime recipes from file or initialize empty array
 let runtimeRecipes = [];
+try {
+    if (fs.existsSync(RUNTIME_RECIPES_FILE)) {
+        const data = fs.readFileSync(RUNTIME_RECIPES_FILE, 'utf8');
+        runtimeRecipes = JSON.parse(data);
+        console.log(`Loaded ${runtimeRecipes.length} runtime recipes from persistent storage`);
+    }
+} catch (error) {
+    console.log('No existing runtime recipes found, starting with empty array');
+    runtimeRecipes = [];
+}
+
+// Function to save runtime recipes to file
+function saveRuntimeRecipes() {
+    try {
+        fs.writeFileSync(RUNTIME_RECIPES_FILE, JSON.stringify(runtimeRecipes, null, 2));
+        console.log(`Saved ${runtimeRecipes.length} runtime recipes to persistent storage`);
+    } catch (error) {
+        console.error('Error saving runtime recipes:', error);
+    }
+}
 
 // Middleware
 app.use(express.static('public'));
@@ -51,6 +75,7 @@ app.post('/add', (req, res) => {
     };
     
     runtimeRecipes.push(newRecipe);
+    saveRuntimeRecipes();
     res.redirect('/');
 });
 
@@ -81,6 +106,7 @@ app.post('/edit/:id', (req, res) => {
         recommendedDrinks: drinks ? drinks.split('\n').filter(d => d.trim()) : []
     };
     
+    saveRuntimeRecipes();
     res.redirect(`/recipe/${req.params.id}`);
 });
 
@@ -94,6 +120,7 @@ app.post('/delete/:id', (req, res) => {
     
     // Remove the recipe from runtime recipes
     runtimeRecipes.splice(recipeIndex, 1);
+    saveRuntimeRecipes();
     res.redirect('/');
 });
 
