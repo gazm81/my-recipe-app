@@ -1,0 +1,122 @@
+[
+  {
+    "id": "hungarian-goulash",
+    "title": "Hungarian Goulash Recipe (Inspired by Mum's Version)",
+    "serves": "6-8",
+    "prepTime": "15 mins",
+    "cookTime": "40 mins",
+    "ingredients": [
+      "3 green capsicums (sliced)",
+      "2 kg chicken pieces (bone-in or boneless, as preferred)",
+      "3 onions (finely diced)",
+      "2 tins tomato soup (800 g each)",
+      "4–5 medium potatoes (peeled and cubed)",
+      "1 cup frozen peas (optional)",
+      "4–5 bacon stock cubes (or substitute with chicken stock cubes if unavailable)",
+      "1 can water (for each can of soup)",
+      "½ cup milk (optional, for creaminess)"
+    ],
+    "method": [
+      "Heat a large pot or Dutch oven over medium heat with a drizzle of oil.",
+      "Add the diced onions and sauté until softened and lightly golden.",
+      "Pour in the two cans of tomato soup.",
+      "Fill each empty can with water and add to the pot (2 cans of water in total).",
+      "Stir well to combine. If you prefer a creamier texture, add the milk at this stage.",
+      "Add the chicken pieces, green capsicum slices, cubed potatoes, and stock cubes.",
+      "Stir to ensure the ingredients are evenly distributed.",
+      "Bring the mixture to a boil over medium-high heat.",
+      "Reduce the heat to low, cover, and let it simmer gently for 40 minutes, stirring occasionally.",
+      "Add the peas in the last 10 minutes if using.",
+      "Taste the goulash and adjust seasoning as needed.",
+      "Serve hot in bowls, accompanied by crusty bread or over buttered noodles for a complete meal."
+    ],
+    "timing": "5:30 PM - Start prepping vegetables and chicken | 5:45 PM - Sauté onions in the pot | 5:50 PM - Add soup, water, and milk to the pot | 5:55 PM - Add chicken, capsicum, potatoes, and stock cubes. Bring to boil | 6:00 PM - Reduce heat, cover, and simmer for 40 minutes | 6:20 PM - Add peas (if using). Stir and adjust seasoning | 6:25 PM - Turn off heat. Let the goulash rest for 5 minutes | 6:30 PM - Serve and enjoy!",
+    "recommendedDrinks": [
+      "Red wine (Hungarian varieties preferred)",
+      "Dark beer",
+      "Sparkling water with lemon"
+    ],
+    "source": "original"
+  },
+  {
+    "id": "chicken-corn-soup",
+    "title": "Chicken, Corn & Pea Soup (No Green Beans)",
+    "serves": "6–8",
+    "prepTime": "15 mins",
+    "cookTime": "Pressure: 12 mins + Slow: 1–2 hours",
+    "ingredients": [
+      "1kg chicken thigh fillets (or breast), whole or halved",
+      "1 onion, finely chopped",
+      "2 garlic cloves, minced",
+      "2 carrots, diced",
+      "2 celery stalks, diced",
+      "2 potatoes, peeled and diced small",
+      "360g frozen peas & corn mix (or 210g corn + 150g peas)",
+      "6 cups low-sodium chicken stock",
+      "1 tsp dried thyme",
+      "1 bay leaf",
+      "Salt and pepper, to taste",
+      "1/2 cup risoni or small pasta (optional, added near end)",
+      "1/2 cup cream (optional, for creamy version)",
+      "Chopped parsley or chives for garnish"
+    ],
+    "method": [
+      "Turn Instant Pot to sauté mode. Cook onion, garlic, carrot, and celery in a little oil (3–5 mins).",
+      "Add: chicken, stock, thyme, bay leaf, and potatoes.",
+      "Close lid and pressure cook for 12 mins (manual/high). Let pressure release naturally for at least 10 mins.",
+      "Open lid, remove chicken and shred with two forks.",
+      "Return shredded chicken to pot. Add peas and corn.",
+      "Switch to slow cooker mode (low) for 1–2 hours to gently cook the peas and blend flavors.",
+      "Stir in pasta for final 15–20 mins, or add cream just before serving.",
+      "Taste and season. Garnish with herbs if using."
+    ],
+    "timing": "Total cooking time: 1.5-2.5 hours including pressure cooking and slow cooking phases",
+    "recommendedDrinks": [
+      "White wine",
+      "Light beer",
+      "Hot tea",
+      "Sparkling water"
+    ],
+    "source": "original"
+  },
+  {
+    "id": "pea-ham-soup",
+    "title": "Split Pea & Ham Hock Soup (Pressure + Slow Cook Method)",
+    "serves": "6–8",
+    "prepTime": "15–20 minutes",
+    "cookTime": "~30 min pressure + 2 hr slow",
+    "ingredients": [
+      "1 kg smoked ham hock (or bacon hock)",
+      "500 g green split peas, rinsed and drained",
+      "2 celery stalks, diced",
+      "2 carrots, peeled and diced",
+      "1 potato, peeled and diced (optional)",
+      "2 onions, chopped",
+      "3 garlic cloves, minced",
+      "3 sprigs fresh thyme (optional)",
+      "2 bay leaves",
+      "5 cups water (or use low-sodium chicken stock for extra flavor)",
+      "1–2 tbsp olive oil or butter",
+      "Salt & black pepper, to taste",
+      "Crusty bread and butter, to serve"
+    ],
+    "method": [
+      "Set your Instant Pot or pressure cooker to sauté mode. Add olive oil or butter, then cook onions, celery, carrots, and garlic for about 5–7 minutes until softened and fragrant. Cancel sauté mode.",
+      "Add split peas, potato (if using), ham hock, thyme, bay leaves, and water/stock. Do not salt yet — ham hocks can be salty.",
+      "Seal the lid and pressure cook on high for 30 minutes. Allow natural release for at least 10–15 minutes before opening.",
+      "Take out the ham hock and set it aside to cool slightly.",
+      "Switch to slow cooker mode (or transfer contents to a slow cooker). Cook on low for 2 hours. This deepens the flavor and thickens the soup naturally.",
+      "Strip the skin, bones, and fat from the ham hock. Roughly chop the meat and return it to the pot. Stir to combine.",
+      "Taste and season with salt and pepper. Add a splash of vinegar or lemon juice if desired to brighten the flavor.",
+      "Ladle into bowls and serve hot with crusty bread and butter."
+    ],
+    "timing": "Total Time: ~2.5–3 hours (30 min pressure + 2 hr slow cook + prep time)",
+    "recommendedDrinks": [
+      "Red wine",
+      "Dark stout beer",
+      "Hot cider",
+      "Water with lemon"
+    ],
+    "source": "original"
+  }
+]

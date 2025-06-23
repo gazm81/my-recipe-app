@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= recipe.title %> - My Recipe App</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🍽️ My Recipe App</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/add">Add Recipe</a>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="recipe-detail">
+                <h2><%= recipe.title %></h2>
+                
+                <div class="recipe-meta">
+                    <span>🍽️ Serves: <%= recipe.serves %></span>
+                    <span>⏱️ Prep: <%= recipe.prepTime %></span>
+                    <span>🔥 Cook: <%= recipe.cookTime %></span>
+                </div>
+
+                <div class="recipe-sections">
+                    <section class="ingredients-section">
+                        <h3>🛒 Ingredients</h3>
+                        <ul class="ingredients-list">
+                            <% recipe.ingredients.forEach(ingredient => { %>
+                                <li><%= ingredient %></li>
+                            <% }) %>
+                        </ul>
+                    </section>
+
+                    <section class="method-section">
+                        <h3>🧑‍🍳 Method</h3>
+                        <ol class="method-list">
+                            <% recipe.method.forEach(step => { %>
+                                <li><%= step %></li>
+                            <% }) %>
+                        </ol>
+                    </section>
+
+                    <% if (recipe.timing) { %>
+                    <section class="timing-section">
+                        <h3>⏰ Timing Planner</h3>
+                        <div class="timing-content">
+                            <%= recipe.timing %>
+                        </div>
+                    </section>
+                    <% } %>
+
+                    <% if (recipe.recommendedDrinks && recipe.recommendedDrinks.length > 0) { %>
+                    <section class="drinks-section">
+                        <h3>🥤 Recommended Drinks</h3>
+                        <ul class="drinks-list">
+                            <% recipe.recommendedDrinks.forEach(drink => { %>
+                                <li><%= drink %></li>
+                            <% }) %>
+                        </ul>
+                    </section>
+                    <% } %>
+                </div>
+
+                <div class="recipe-actions">
+                    <a href="/" class="btn btn-secondary">← Back to Recipes</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

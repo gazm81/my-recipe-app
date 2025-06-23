@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Recipe - My Recipe App</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🍽️ My Recipe App</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/add">Add Recipe</a>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="add-recipe-form">
+                <h2>📝 Add New Recipe</h2>
+                <p class="note">Note: New recipes are stored in memory only and will be lost when the container restarts.</p>
+                
+                <form method="POST" action="/add">
+                    <div class="form-group">
+                        <label for="title">Recipe Title:</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ingredients">Ingredients (one per line):</label>
+                        <textarea id="ingredients" name="ingredients" rows="8" required 
+                                  placeholder="2 cups flour&#10;1 tsp salt&#10;3 eggs&#10;..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="method">Method/Instructions (one step per line):</label>
+                        <textarea id="method" name="method" rows="10" required 
+                                  placeholder="Preheat oven to 180°C&#10;Mix dry ingredients in a bowl&#10;Add wet ingredients..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timing">Timing Planner (optional):</label>
+                        <textarea id="timing" name="timing" rows="4" 
+                                  placeholder="5:00 PM - Start prep&#10;5:30 PM - Begin cooking&#10;6:00 PM - Ready to serve"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="drinks">Recommended Drinks (one per line, optional):</label>
+                        <textarea id="drinks" name="drinks" rows="4" 
+                                  placeholder="Red wine&#10;Sparkling water&#10;Beer"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Add Recipe</button>
+                        <a href="/" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
