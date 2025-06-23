@@ -253,6 +253,15 @@ nav a:hover {
     background-color: #7f8c8d;
 }
 
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
 .error-page {
     background: white;
     border-radius: 8px;

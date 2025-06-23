@@ -54,6 +54,49 @@ app.post('/add', (req, res) => {
     res.redirect('/');
 });
 
+// Edit recipe routes
+app.get('/edit/:id', (req, res) => {
+    const recipe = runtimeRecipes.find(r => r.id === req.params.id);
+    if (!recipe) {
+        return res.status(404).render('error', { message: 'Recipe not found or cannot be edited' });
+    }
+    res.render('edit', { recipe });
+});
+
+app.post('/edit/:id', (req, res) => {
+    const { title, ingredients, method, timing, drinks } = req.body;
+    const recipeIndex = runtimeRecipes.findIndex(r => r.id === req.params.id);
+    
+    if (recipeIndex === -1) {
+        return res.status(404).render('error', { message: 'Recipe not found or cannot be edited' });
+    }
+    
+    // Update the recipe
+    runtimeRecipes[recipeIndex] = {
+        ...runtimeRecipes[recipeIndex],
+        title: title || 'Untitled Recipe',
+        ingredients: ingredients ? ingredients.split('\n').filter(i => i.trim()) : [],
+        method: method ? method.split('\n').filter(m => m.trim()) : [],
+        timing: timing || '',
+        recommendedDrinks: drinks ? drinks.split('\n').filter(d => d.trim()) : []
+    };
+    
+    res.redirect(`/recipe/${req.params.id}`);
+});
+
+// Delete recipe route
+app.post('/delete/:id', (req, res) => {
+    const recipeIndex = runtimeRecipes.findIndex(r => r.id === req.params.id);
+    
+    if (recipeIndex === -1) {
+        return res.status(404).render('error', { message: 'Recipe not found or cannot be deleted' });
+    }
+    
+    // Remove the recipe from runtime recipes
+    runtimeRecipes.splice(recipeIndex, 1);
+    res.redirect('/');
+});
+
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Recipe app running on http://0.0.0.0:${PORT}`);
 });
