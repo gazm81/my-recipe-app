@@ -36,17 +36,11 @@
 		}
 	},
 
-	"postCreateCommand": "npm install",
-
-	"updateContentCommand": "sudo chown -R node:node /app",
+	"postCreateCommand": "npm install && mkdir -p data",
 
 	"remoteUser": "node",
 	
-	"workspaceFolder": "/app",
-	
-	"mounts": [
-		"source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached"
-	],
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	
 	"shutdownAction": "stopContainer",
 	

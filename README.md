@@ -43,8 +43,6 @@ Then open your browser and navigate to `http://localhost:3000`
 
 ### Using Docker Compose
 
-⚠️ **Note**: There is currently an issue with the Docker container setup that is being investigated. Please use the local development method above for now.
-
 1. Clone the repository:
 ```bash
 git clone <repository-url>
