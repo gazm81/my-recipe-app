@@ -4,5 +4,4 @@ npm-debug.log
 .gitignore
 README.md
 Dockerfile
-docker-compose.yml
 .dockerignore

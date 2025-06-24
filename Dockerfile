@@ -2,17 +2,23 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy package files
+# Copy package files first
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --production && npm cache clean --force
+RUN npm install --production
 
 # Copy application code
 COPY . .
 
 # Create data directory for persistent storage
 RUN mkdir -p /app/data
+
+# Ensure the node user owns the /app directory
+RUN chown -R node:node /app
+
+# Switch to non-root user
+USER node
 
 EXPOSE 80
 
