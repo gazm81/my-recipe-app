@@ -38,6 +38,8 @@
 
 	"postCreateCommand": "npm install",
 
+	"updateContentCommand": "sudo chown -R node:node /app",
+
 	"remoteUser": "node",
 	
 	"workspaceFolder": "/app",
