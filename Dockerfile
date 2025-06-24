@@ -14,6 +14,12 @@ COPY . .
 # Create data directory for persistent storage
 RUN mkdir -p /app/data
 
+# Ensure the node user owns the /app directory
+RUN chown -R node:node /app
+
+# Switch to non-root user
+USER node
+
 EXPOSE 80
 
 # Set default port to 80 for Azure deployment
