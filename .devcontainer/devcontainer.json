@@ -13,6 +13,10 @@
 			"username": "node",
 			"userUid": "automatic",
 			"userGid": "automatic"
+		},
+		"ghcr.io/devcontainers/features/git:1": {
+			"ppa": false,
+			"version": "os-provided"
 		}
 	},
 	
@@ -20,10 +24,8 @@
 		"vscode": {
 			"extensions": [
 				"ms-vscode.vscode-node-azure-pack",
-				"ms-vscode.vscode-json",
 				"esbenp.prettier-vscode",
 				"ms-vscode.vscode-eslint",
-				"ms-vscode.vscode-typescript-next",
 				"formulahendry.auto-rename-tag",
 				"ms-vscode.vscode-html-css-support",
 				"ms-vscode.azure-account"
@@ -32,8 +34,11 @@
 				"terminal.integrated.defaultProfile.linux": "bash",
 				"editor.formatOnSave": true,
 				"editor.codeActionsOnSave": {
-					"source.fixAll.eslint": true
-				}
+					"source.fixAll.eslint": "explicit"
+				},
+				"files.eol": "\n",
+				"editor.insertSpaces": true,
+				"editor.tabSize": 2
 			}
 		}
 	},
@@ -47,13 +52,17 @@
 		}
 	},
 
-	"postCreateCommand": "npm install && mkdir -p data",
+	"postCreateCommand": "npm install && mkdir -p data && echo 'DevContainer setup complete! Run npm start to begin development.'",
 
 	"remoteUser": "node",
 	
 	"workspaceFolder": "/app",
 	
 	"overrideCommand": true,
+
+	"mounts": [
+		"source=${localWorkspaceFolder}/data,target=/app/data,type=bind,consistency=cached"
+	],
 	
 	"shutdownAction": "stopContainer",
 	

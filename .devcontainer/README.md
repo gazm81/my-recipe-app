@@ -2,6 +2,8 @@
 
 This directory contains the configuration for a VS Code development container that provides a consistent development environment for the My Recipe App project.
 
+**Note**: This dev container now uses the root Dockerfile for consistency between development and production environments, with additional development tools added via devcontainer features.
+
 ## What is a Dev Container?
 
 A development container (dev container) is a running Docker container with a well-defined tool/runtime stack and its prerequisites. VS Code can connect to this container and provide a full-featured development environment inside it.
@@ -26,16 +28,17 @@ A development container (dev container) is a running Docker container with a wel
 
 The dev container includes:
 
-- **Node.js 18** - Runtime environment matching production
+- **Node.js 18 Alpine** - Runtime environment matching production
 - **Essential VS Code Extensions**:
   - Azure tools for deployment
   - Prettier for code formatting
   - ESLint for code linting
   - HTML/CSS support
   - Auto rename tag functionality
-- **Development Tools**: Git, curl, wget, vim, nano
+- **Development Tools**: Git, curl, wget, vim, nano (via common-utils feature)
 - **Automatic Setup**: Dependencies are installed automatically via `npm install`
 - **Port Forwarding**: Port 3000 is automatically forwarded for local development
+- **Data Persistence**: Local data directory is mounted for persistent storage
 
 ## Usage
 
