@@ -12,7 +12,24 @@ A containerized web application for hosting and managing recipes. This app serve
 
 ## Quick Start
 
-### Local Development (Recommended for now)
+### Using VS Code Dev Container (Recommended)
+
+The easiest way to get started is using the VS Code development container:
+
+**Requirements:**
+- Docker Desktop installed and running
+- VS Code with the Dev Containers extension
+
+**Steps:**
+1. Open the project in VS Code
+2. When prompted, click "Reopen in Container" or use `F1` → "Dev Containers: Reopen in Container"
+3. VS Code will build the container and install dependencies automatically
+4. Run `npm start` in the VS Code terminal
+5. Open `http://localhost:3000` in your browser
+
+The dev container works on both **Windows and Mac** and provides a consistent development environment with all necessary tools pre-installed.
+
+### Local Development (Alternative)
 
 ```bash
 # Install dependencies
