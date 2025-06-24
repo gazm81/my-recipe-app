@@ -24,7 +24,7 @@ A development container (dev container) is a running Docker container with a wel
 
 ## What's Included
 
-The dev container includes:
+The dev container uses the official Microsoft Node.js devcontainer image and includes:
 
 - **Node.js 18** - Runtime environment matching production
 - **Essential VS Code Extensions**:
@@ -33,7 +33,7 @@ The dev container includes:
   - ESLint for code linting
   - HTML/CSS support
   - Auto rename tag functionality
-- **Development Tools**: Git, curl, wget, vim, nano
+- **Development Tools**: Git, curl, wget, vim, nano (pre-installed in the official image)
 - **Automatic Setup**: Dependencies are installed automatically via `npm install`
 - **Port Forwarding**: Port 3000 is automatically forwarded for local development
 

@@ -41,7 +41,7 @@ npm start
 
 Then open your browser and navigate to `http://localhost:3000`
 
-### Using Docker Compose
+### Using Docker Compose (For Production Testing)
 
 1. Clone the repository:
 ```bash
@@ -55,16 +55,6 @@ docker-compose up -d
 ```
 
 3. Open your browser and navigate to `http://localhost:3000`
-
-### Using Docker
-
-```bash
-# Build the image
-docker build -t my-recipe-app .
-
-# Run the container locally (for development)
-docker run -p 3000:80 my-recipe-app
-```
 
 ## Azure Deployment
 
@@ -125,7 +115,8 @@ az storage share create --name recipe-data --account-name $STORAGE_ACCOUNT --acc
 
 2. **Build and Push Image:**
 ```bash
-# Build and push to ACR
+# The deployment script creates a temporary Dockerfile optimized for Azure
+# and builds using Azure Container Registry build service
 az acr build --registry $ACR_NAME --image my-recipe-app:latest .
 ```
 

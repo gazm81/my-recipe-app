@@ -82,11 +82,42 @@ az storage share create \
 # Build and push container image
 echo "Building and pushing container image..."
 echo "Note: Using Azure Container Registry build service to avoid local Docker environment issues"
+
+# Create a minimal Dockerfile for Azure deployment
+cat > Dockerfile.azure << 'EOF'
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --production && npm cache clean --force
+
+# Copy application code
+COPY . .
+
+# Create data directory for persistent storage
+RUN mkdir -p /app/data
+
+EXPOSE 80
+
+# Set default port to 80 for Azure deployment
+ENV PORT=80
+
+CMD ["npm", "start"]
+EOF
+
 az acr build \
     --registry "$ACR_NAME" \
     --image "$IMAGE_NAME:$IMAGE_TAG" \
+    --file Dockerfile.azure \
     . \
     --output table
+
+# Clean up the temporary Dockerfile
+rm Dockerfile.azure
 
 # Get ACR credentials
 ACR_USERNAME=$(az acr credential show --name "$ACR_NAME" --query username -o tsv)

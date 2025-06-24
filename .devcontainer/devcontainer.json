@@ -1,9 +1,6 @@
 {
 	"name": "My Recipe App Development",
-	"build": {
-		"dockerfile": "Dockerfile",
-		"context": ".."
-	},
+	"image": "mcr.microsoft.com/devcontainers/javascript-node:18",
 	
 	"customizations": {
 		"vscode": {

@@ -1,14 +1,14 @@
-version: '3.8'
-
 services:
   recipe-app:
-    build: .
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
       - PORT=3000
+    command: sh -c "npm install --production && npm start"
     restart: unless-stopped
-    # Optional: Mount recipes for development (commented out for production)
-    # volumes:
-    #   - ./data/recipes.json:/app/data/recipes.json:ro
