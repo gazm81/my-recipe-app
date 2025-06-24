@@ -2,7 +2,7 @@
 	"name": "My Recipe App Development",
 	"build": {
 		"dockerfile": "Dockerfile",
-		"context": "."
+		"context": ".."
 	},
 	
 	"customizations": {
