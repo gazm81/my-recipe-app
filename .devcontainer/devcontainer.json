@@ -47,7 +47,7 @@
 		}
 	},
 
-	"postCreateCommand": "npm install --include=dev && mkdir -p data",
+	"postCreateCommand": "npm install && mkdir -p data",
 
 	"remoteUser": "node",
 	
