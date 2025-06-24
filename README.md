@@ -9,6 +9,11 @@ A containerized web application for hosting and managing recipes. This app serve
 - ➕ **Add New Recipes**: Add recipes through the web interface (stored in memory)
 - 🐳 **Containerized**: Easy deployment with Docker
 - 📋 **Pre-loaded Recipes**: Comes with existing recipes from the repository
+- 🚀 **Streamlined Development**: Optimized devcontainer workflow for Mac and Windows
+
+## Development Approach
+
+This repository is optimized for development using VS Code Dev Containers, providing a consistent environment across Mac and Windows. The setup uses official Microsoft devcontainer images and avoids maintaining custom Dockerfiles for development, while still supporting production deployment to Azure.
 
 ## Quick Start
 

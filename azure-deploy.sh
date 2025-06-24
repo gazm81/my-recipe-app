@@ -82,8 +82,10 @@ az storage share create \
 # Build and push container image
 echo "Building and pushing container image..."
 echo "Note: Using Azure Container Registry build service to avoid local Docker environment issues"
+echo "Creating temporary Dockerfile optimized for Azure deployment..."
 
 # Create a minimal Dockerfile for Azure deployment
+# This is generated temporarily to avoid maintaining a separate Dockerfile in the repo
 cat > Dockerfile.azure << 'EOF'
 FROM node:18-alpine
 
