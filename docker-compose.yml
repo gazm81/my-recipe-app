@@ -9,6 +9,6 @@ services:
       - NODE_ENV=production
       - PORT=3000
     restart: unless-stopped
-    volumes:
-      # Optional: Mount recipes for development (commented out for production)
-      # - ./data/recipes.json:/app/data/recipes.json:ro
+    # Optional: Mount recipes for development (commented out for production)
+    # volumes:
+    #   - ./data/recipes.json:/app/data/recipes.json:ro
