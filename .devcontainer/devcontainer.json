@@ -1,8 +1,19 @@
 {
 	"name": "My Recipe App Development",
 	"build": {
-		"dockerfile": "Dockerfile",
+		"dockerfile": "../Dockerfile",
 		"context": ".."
+	},
+	
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": false,
+			"installOhMyZsh": false,
+			"upgradePackages": true,
+			"username": "node",
+			"userUid": "automatic",
+			"userGid": "automatic"
+		}
 	},
 	
 	"customizations": {
@@ -36,15 +47,18 @@
 		}
 	},
 
-	"postCreateCommand": "npm install && mkdir -p data",
+	"postCreateCommand": "npm install --include=dev && mkdir -p data",
 
 	"remoteUser": "node",
 	
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"workspaceFolder": "/app",
+	
+	"overrideCommand": true,
 	
 	"shutdownAction": "stopContainer",
 	
 	"containerEnv": {
-		"NODE_ENV": "development"
+		"NODE_ENV": "development",
+		"PORT": "3000"
 	}
 }

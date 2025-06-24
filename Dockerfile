@@ -2,14 +2,18 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy package files
+# Copy package files first
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --production && npm cache clean --force
+RUN npm install --production
 
-# Copy application code
-COPY . .
+# Copy application code (excluding node_modules via explicit copy)
+COPY app.js ./
+COPY data/ ./data/
+COPY public/ ./public/
+COPY recipes/ ./recipes/
+COPY views/ ./views/
 
 # Create data directory for persistent storage
 RUN mkdir -p /app/data

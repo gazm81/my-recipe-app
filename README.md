@@ -41,21 +41,6 @@ npm start
 
 Then open your browser and navigate to `http://localhost:3000`
 
-### Using Docker Compose
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd my-recipe-app
-```
-
-2. Start the application:
-```bash
-docker-compose up -d
-```
-
-3. Open your browser and navigate to `http://localhost:3000`
-
 ### Using Docker
 
 ```bash
