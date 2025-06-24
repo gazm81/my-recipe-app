@@ -1,0 +1,50 @@
+{
+	"name": "My Recipe App Development",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "."
+	},
+	
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.vscode-node-azure-pack",
+				"ms-vscode.vscode-json",
+				"esbenp.prettier-vscode",
+				"ms-vscode.vscode-eslint",
+				"ms-vscode.vscode-typescript-next",
+				"formulahendry.auto-rename-tag",
+				"ms-vscode.vscode-html-css-support",
+				"ms-vscode.azure-account"
+			],
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "bash",
+				"editor.formatOnSave": true,
+				"editor.codeActionsOnSave": {
+					"source.fixAll.eslint": true
+				}
+			}
+		}
+	},
+
+	"forwardPorts": [3000],
+	
+	"portsAttributes": {
+		"3000": {
+			"label": "Recipe App Development Server",
+			"onAutoForward": "notify"
+		}
+	},
+
+	"postCreateCommand": "npm install",
+
+	"remoteUser": "node",
+	
+	"workspaceFolder": "/app",
+	
+	"shutdownAction": "stopContainer",
+	
+	"containerEnv": {
+		"NODE_ENV": "development"
+	}
+}
