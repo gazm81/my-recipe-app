@@ -44,6 +44,10 @@
 	
 	"workspaceFolder": "/app",
 	
+	"mounts": [
+		"source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached"
+	],
+	
 	"shutdownAction": "stopContainer",
 	
 	"containerEnv": {
