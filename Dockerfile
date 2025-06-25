@@ -14,15 +14,15 @@ COPY . .
 # Create data directory for persistent storage
 RUN mkdir -p /app/data
 
+# Create persistent-data directory for Azure File Share mount
+RUN mkdir -p /app/persistent-data
+
 # Ensure the node user owns the /app directory
 RUN chown -R node:node /app
 
 # Switch to non-root user
 USER node
 
-EXPOSE 80
-
-# Set default port to 80 for Azure deployment
-ENV PORT=80
+EXPOSE 3000
 
 CMD ["npm", "start"]

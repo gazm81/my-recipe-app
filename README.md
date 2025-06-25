@@ -48,7 +48,7 @@ Then open your browser and navigate to `http://localhost:3000`
 docker build -t my-recipe-app .
 
 # Run the container locally (for development)
-docker run -p 3000:80 my-recipe-app
+docker run -p 3000:3000 my-recipe-app
 ```
 
 ## Azure Deployment
@@ -57,7 +57,7 @@ This app is designed to be deployed on Azure with persistent storage. The deploy
 
 - **Azure Container Registry (ACR)** for storing the container image
 - **Azure Container Instances (ACI)** for running the container 24/7
-- **Azure File Share** mounted at `/app/data` for persistent recipe storage
+- **Azure File Share** mounted at `/app/persistent-data` for persistent recipe storage
 - **Australia East** region deployment for optimal performance
 
 ### Prerequisites
@@ -123,13 +123,13 @@ az container create \
   --image $ACR_NAME.azurecr.io/my-recipe-app:latest \
   --os-type Linux \
   --registry-login-server $ACR_NAME.azurecr.io \
-  --ports 80 \
+  --ports 3000 \
   --dns-name-label recipe-app-$(date +%s) \
   --azure-file-volume-account-name $STORAGE_ACCOUNT \
   --azure-file-volume-account-key $STORAGE_KEY \
   --azure-file-volume-share-name recipe-data \
-  --azure-file-volume-mount-path /app/data \
-  --environment-variables PORT=80 NODE_ENV=production
+  --azure-file-volume-mount-path /app/persistent-data \
+  --environment-variables NODE_ENV=production
 ```
 
 ### Cost Optimization
@@ -142,7 +142,7 @@ The deployment is optimized for minimal cost while maintaining 24/7 availability
 
 ### Persistent Storage
 
-With Azure File Share mounted at `/app/data`, new recipes added through the web interface are now **persistent** and will survive container restarts. The app automatically saves and loads recipes from the mounted file share.
+With Azure File Share mounted at `/app/persistent-data`, new recipes added through the web interface are now **persistent** and will survive container restarts. The app automatically saves and loads recipes from the mounted file share.
 
 ## Recipe Structure
 

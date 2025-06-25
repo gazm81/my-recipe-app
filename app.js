@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // File path for persistent runtime recipes (will be on Azure File Share)
-const RUNTIME_RECIPES_FILE = path.join(__dirname, 'data', 'runtime-recipes.json');
+const RUNTIME_RECIPES_FILE = path.join(__dirname, 'persistent-data', 'runtime-recipes.json');
 
 // Load runtime recipes from file or initialize empty array
 let runtimeRecipes = [];
@@ -25,6 +25,12 @@ try {
 // Function to save runtime recipes to file
 function saveRuntimeRecipes() {
     try {
+        // Ensure the persistent-data directory exists
+        const persistentDataDir = path.join(__dirname, 'persistent-data');
+        if (!fs.existsSync(persistentDataDir)) {
+            fs.mkdirSync(persistentDataDir, { recursive: true });
+        }
+        
         fs.writeFileSync(RUNTIME_RECIPES_FILE, JSON.stringify(runtimeRecipes, null, 2));
         console.log(`Saved ${runtimeRecipes.length} runtime recipes to persistent storage`);
     } catch (error) {
