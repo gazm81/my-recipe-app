@@ -121,6 +121,7 @@ az container create \
   --name recipe-app-container \
   --resource-group $RESOURCE_GROUP \
   --image $ACR_NAME.azurecr.io/my-recipe-app:latest \
+  --os-type Linux \
   --registry-login-server $ACR_NAME.azurecr.io \
   --ports 80 \
   --dns-name-label recipe-app-$(date +%s) \

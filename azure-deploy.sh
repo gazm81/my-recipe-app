@@ -99,6 +99,7 @@ az container create \
     --resource-group "$RESOURCE_GROUP" \
     --location "$LOCATION" \
     --image "$ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG" \
+    --os-type Linux \
     --registry-login-server "$ACR_LOGIN_SERVER" \
     --registry-username "$ACR_USERNAME" \
     --registry-password "$ACR_PASSWORD" \
