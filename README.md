@@ -57,7 +57,7 @@ This app is designed to be deployed on Azure with persistent storage. The deploy
 
 - **Azure Container Registry (ACR)** for storing the container image
 - **Azure Container Instances (ACI)** for running the container 24/7
-- **Azure File Share** mounted at `/app/data` for persistent recipe storage
+- **Azure File Share** mounted at `/app/persistent-data` for persistent recipe storage
 - **Australia East** region deployment for optimal performance
 
 ### Prerequisites
@@ -128,7 +128,7 @@ az container create \
   --azure-file-volume-account-name $STORAGE_ACCOUNT \
   --azure-file-volume-account-key $STORAGE_KEY \
   --azure-file-volume-share-name recipe-data \
-  --azure-file-volume-mount-path /app/data \
+  --azure-file-volume-mount-path /app/persistent-data \
   --environment-variables PORT=80 NODE_ENV=production
 ```
 
@@ -142,7 +142,7 @@ The deployment is optimized for minimal cost while maintaining 24/7 availability
 
 ### Persistent Storage
 
-With Azure File Share mounted at `/app/data`, new recipes added through the web interface are now **persistent** and will survive container restarts. The app automatically saves and loads recipes from the mounted file share.
+With Azure File Share mounted at `/app/persistent-data`, new recipes added through the web interface are now **persistent** and will survive container restarts. The app automatically saves and loads recipes from the mounted file share.
 
 ## Recipe Structure
 

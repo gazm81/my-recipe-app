@@ -112,7 +112,7 @@ az container create \
     --azure-file-volume-account-name "$STORAGE_ACCOUNT" \
     --azure-file-volume-account-key "$STORAGE_KEY" \
     --azure-file-volume-share-name "$FILE_SHARE_NAME" \
-    --azure-file-volume-mount-path "/app/data" \
+    --azure-file-volume-mount-path "/app/persistent-data" \
     --environment-variables "PORT=80" "NODE_ENV=production" \
     --output table
 
