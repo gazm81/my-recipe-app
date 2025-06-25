@@ -9,6 +9,9 @@ pids
 *.seed
 *.pid.lock
 
+# Persistent data directory (used for Azure File Share mount)
+persistent-data/
+
 # Coverage directory used by tools like istanbul
 coverage/
 
