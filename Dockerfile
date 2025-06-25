@@ -23,9 +23,6 @@ RUN chown -R node:node /app
 # Switch to non-root user
 USER node
 
-EXPOSE 80
-
-# Set default port to 80 for Azure deployment
-ENV PORT=80
+EXPOSE 3000
 
 CMD ["npm", "start"]
