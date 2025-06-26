@@ -76,7 +76,7 @@ jobs:
           --registry-username ${{ steps.acr-creds.outputs.acr-username }} \
           --registry-password ${{ steps.acr-creds.outputs.acr-password }} \
           --dns-name-label $ACI_NAME-$(date +%s) \
-          --ports 3000 \
+          --ports 80 \
           --protocol TCP \
           --cpu 0.5 \
           --memory 1 \
@@ -85,7 +85,7 @@ jobs:
           --azure-file-volume-account-key ${{ steps.acr-creds.outputs.storage-key }} \
           --azure-file-volume-share-name $FILE_SHARE_NAME \
           --azure-file-volume-mount-path /app/persistent-data \
-          --environment-variables NODE_ENV=production \
+          --environment-variables NODE_ENV=production PORT=80 \
           --output table
           
     - name: Get deployment URL and verify
