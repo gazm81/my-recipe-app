@@ -1,0 +1,115 @@
+name: Deploy to Azure
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # Allow manual trigger
+
+env:
+  RESOURCE_GROUP: recipe-app-rg
+  ACR_NAME: ${{ secrets.ACR_NAME }}
+  ACI_NAME: recipe-app-container
+  STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
+  FILE_SHARE_NAME: recipe-data
+  IMAGE_NAME: my-recipe-app
+  IMAGE_TAG: latest
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+    - name: Build and push container image to ACR
+      run: |
+        echo "Building and pushing container image..."
+        az acr build \
+          --registry $ACR_NAME \
+          --image $IMAGE_NAME:$IMAGE_TAG \
+          --image $IMAGE_NAME:${{ github.sha }} \
+          . \
+          --output table
+          
+    - name: Get ACR credentials
+      id: acr-creds
+      run: |
+        ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --resource-group $RESOURCE_GROUP --query loginServer -o tsv)
+        ACR_USERNAME=$(az acr credential show --name $ACR_NAME --query username -o tsv)
+        ACR_PASSWORD=$(az acr credential show --name $ACR_NAME --query passwords[0].value -o tsv)
+        STORAGE_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP --account-name $STORAGE_ACCOUNT --query '[0].value' -o tsv)
+        
+        echo "acr-login-server=$ACR_LOGIN_SERVER" >> $GITHUB_OUTPUT
+        echo "acr-username=$ACR_USERNAME" >> $GITHUB_OUTPUT
+        echo "acr-password=$ACR_PASSWORD" >> $GITHUB_OUTPUT
+        echo "storage-key=$STORAGE_KEY" >> $GITHUB_OUTPUT
+        
+    - name: Delete existing container instance
+      run: |
+        echo "Checking for existing container instance..."
+        if az container show --name $ACI_NAME --resource-group $RESOURCE_GROUP &> /dev/null; then
+          echo "Stopping and deleting existing container instance..."
+          az container delete \
+            --name $ACI_NAME \
+            --resource-group $RESOURCE_GROUP \
+            --yes
+        else
+          echo "No existing container instance found - this might be the first deployment"
+        fi
+          
+    - name: Deploy updated container to Azure Container Instances
+      run: |
+        echo "Deploying updated container to Azure Container Instances..."
+        az container create \
+          --name $ACI_NAME \
+          --resource-group $RESOURCE_GROUP \
+          --location australiaeast \
+          --image ${{ steps.acr-creds.outputs.acr-login-server }}/$IMAGE_NAME:$IMAGE_TAG \
+          --os-type Linux \
+          --registry-login-server ${{ steps.acr-creds.outputs.acr-login-server }} \
+          --registry-username ${{ steps.acr-creds.outputs.acr-username }} \
+          --registry-password ${{ steps.acr-creds.outputs.acr-password }} \
+          --dns-name-label $ACI_NAME-$(date +%s) \
+          --ports 3000 \
+          --protocol TCP \
+          --cpu 0.5 \
+          --memory 1 \
+          --restart-policy Always \
+          --azure-file-volume-account-name $STORAGE_ACCOUNT \
+          --azure-file-volume-account-key ${{ steps.acr-creds.outputs.storage-key }} \
+          --azure-file-volume-share-name $FILE_SHARE_NAME \
+          --azure-file-volume-mount-path /app/persistent-data \
+          --environment-variables NODE_ENV=production \
+          --output table
+          
+    - name: Get deployment URL and verify
+      run: |
+        # Wait a moment for container to fully start
+        echo "Waiting for container to start..."
+        sleep 30
+        
+        FQDN=$(az container show --name $ACI_NAME --resource-group $RESOURCE_GROUP --query ipAddress.fqdn -o tsv)
+        
+        echo ""
+        echo "🎉 Deployment completed successfully!"
+        echo "======================================"
+        echo "Application URL: http://$FQDN"
+        echo "Container Image: ${{ steps.acr-creds.outputs.acr-login-server }}/$IMAGE_NAME:$IMAGE_TAG"
+        echo "Git Commit: ${{ github.sha }}"
+        echo "Persistent storage preserved at Azure File Share: $FILE_SHARE_NAME"
+        echo ""
+        
+        # Try to verify the app is responding
+        echo "🔍 Verifying application is responding..."
+        if curl -s --max-time 30 "http://$FQDN" | grep -q "Recipe"; then
+          echo "✅ Application is responding correctly!"
+        else
+          echo "⚠️  Application may still be starting up. Check logs if needed:"
+          echo "   az container logs --name $ACI_NAME --resource-group $RESOURCE_GROUP"
+        fi
