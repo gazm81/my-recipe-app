@@ -53,22 +53,55 @@ docker run -p 3000:3000 my-recipe-app
 
 ## Azure Deployment
 
-This app is designed to be deployed on Azure with persistent storage. The deployment includes:
+This app is designed to be deployed on Azure with persistent storage and automated CI/CD. The deployment includes:
 
 - **Azure Container Registry (ACR)** for storing the container image
 - **Azure Container Instances (ACI)** for running the container 24/7
 - **Azure File Share** mounted at `/app/persistent-data` for persistent recipe storage
+- **GitHub Actions** for automated deployment on code changes
 - **Australia East** region deployment for optimal performance
 
-### Prerequisites
+### Automated CI/CD Pipeline 🚀
 
-- Azure CLI installed and configured
-- An active Azure subscription
-- Docker installed locally
+The repository includes a GitHub Actions workflow that automatically deploys your app when you push changes to the main branch.
 
-### Automated Deployment
+#### Setup CI/CD Pipeline
 
-Run the provided deployment script:
+1. **Initial Azure Setup:**
+   ```bash
+   # Make the setup script executable
+   chmod +x setup-github-actions.sh
+   
+   # Run the setup script (requires Azure CLI login)
+   ./setup-github-actions.sh
+   ```
+
+2. **Configure GitHub Secrets:**
+   The setup script will output the required GitHub secrets. In your GitHub repository:
+   - Go to **Settings** → **Secrets and variables** → **Actions**
+   - Add the following secrets:
+     - `AZURE_CREDENTIALS` (JSON output from setup script)
+     - `ACR_NAME` (your container registry name)
+     - `STORAGE_ACCOUNT` (your storage account name)
+
+3. **Deploy Automatically:**
+   - Push changes to the `main` branch
+   - GitHub Actions will automatically build and deploy your app
+   - Monitor progress in the **Actions** tab of your GitHub repository
+
+#### How the CI/CD Pipeline Works
+
+1. **Trigger**: Push to main branch or manual workflow dispatch
+2. **Build**: Container image is built and pushed to Azure Container Registry
+3. **Deploy**: Container instance is updated with the new image
+4. **Preserve Data**: Persistent storage (Azure File Share) remains intact across deployments
+5. **Verify**: Deployment URL is provided in the workflow output
+
+### Manual Deployment Options
+
+#### Initial Deployment
+
+For the initial deployment or if you prefer manual deployment:
 
 ```bash
 # Make the script executable
@@ -77,6 +110,42 @@ chmod +x azure-deploy.sh
 # Deploy to Azure
 ./azure-deploy.sh
 ```
+
+#### Update Existing Deployment
+
+To manually update an existing deployment with new code changes:
+
+```bash
+# Make the update script executable  
+chmod +x azure-update.sh
+
+# Update existing deployment
+./azure-update.sh
+```
+
+### Monitoring & Troubleshooting
+
+#### GitHub Actions
+- **Monitor deployments**: Check the **Actions** tab in your GitHub repository
+- **View logs**: Click on any workflow run to see detailed deployment logs
+- **Failed deployments**: Check the logs for specific error messages
+
+#### Azure Container Monitoring
+```bash
+# Check container status
+az container show --name recipe-app-container --resource-group recipe-app-rg
+
+# View container logs
+az container logs --name recipe-app-container --resource-group recipe-app-rg
+
+# Follow live logs
+az container logs --name recipe-app-container --resource-group recipe-app-rg --follow
+```
+
+#### Common Issues
+- **First deployment fails**: Ensure GitHub secrets are correctly configured
+- **Container won't start**: Check that ACR_NAME and STORAGE_ACCOUNT secrets match your actual resource names
+- **Data not persisting**: Verify the Azure File Share is correctly mounted at `/app/persistent-data`
 
 The script will:
 1. Create a resource group and all necessary Azure resources
@@ -140,9 +209,23 @@ The deployment is optimized for minimal cost while maintaining 24/7 availability
 - **Standard_LRS** storage (lowest redundancy, lowest cost)
 - **Single region deployment** to avoid cross-region charges
 
-### Persistent Storage
+### Persistent Storage & CI/CD Data Preservation
 
-With Azure File Share mounted at `/app/persistent-data`, new recipes added through the web interface are now **persistent** and will survive container restarts. The app automatically saves and loads recipes from the mounted file share.
+With Azure File Share mounted at `/app/persistent-data`, new recipes added through the web interface are **persistent** and will survive:
+
+- ✅ Container restarts
+- ✅ Manual deployments  
+- ✅ **Automated CI/CD deployments**
+- ✅ Container instance updates
+
+The CI/CD pipeline is specifically designed to preserve your data during deployments. When new code is pushed to main:
+
+1. A new container image is built with your latest code
+2. The existing container instance is replaced with the new image
+3. **The Azure File Share remains attached** - no data is lost
+4. Your app continues running with all existing recipes intact
+
+This means you can continuously deploy code improvements while keeping all user-added recipes safe.
 
 ## Recipe Structure
 
