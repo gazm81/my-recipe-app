@@ -23,6 +23,6 @@ RUN chown -R node:node /app
 # Switch to non-root user
 USER node
 
-EXPOSE 3000
+EXPOSE 80
 
 CMD ["npm", "start"]
