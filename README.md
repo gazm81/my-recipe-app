@@ -273,3 +273,4 @@ The app comes pre-loaded with these recipes:
 ## Contributing
 
 Feel free to submit issues and enhancement requests!
+
