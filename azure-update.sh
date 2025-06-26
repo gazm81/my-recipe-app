@@ -107,7 +107,7 @@ az container create \
     --registry-username "$ACR_USERNAME" \
     --registry-password "$ACR_PASSWORD" \
     --dns-name-label "$ACI_NAME-$(date +%s)" \
-    --ports 80 \
+    --ports 3000 \
     --protocol TCP \
     --cpu 0.5 \
     --memory 1 \
@@ -116,7 +116,7 @@ az container create \
     --azure-file-volume-account-key "$STORAGE_KEY" \
     --azure-file-volume-share-name "$FILE_SHARE_NAME" \
     --azure-file-volume-mount-path "/app/persistent-data" \
-    --environment-variables "NODE_ENV=production" "PORT=80" \
+    --environment-variables "NODE_ENV=production" \
     --output table
 
 # Get the new deployment URL
