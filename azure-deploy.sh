@@ -127,7 +127,7 @@ az container create \
     --azure-file-volume-account-key "$STORAGE_KEY" \
     --azure-file-volume-share-name "$FILE_SHARE_NAME" \
     --azure-file-volume-mount-path "/app/persistent-data" \
-    --environment-variables "NODE_ENV=production" "CALLBACK_URL=http://$DNS_NAME.$LOCATION.azurecontainer.io/auth/github/callback" \
+    --environment-variables "NODE_ENV=production" "CALLBACK_URL=http://$DNS_NAME.$LOCATION.azurecontainer.io:3000/auth/github/callback" \
     --output table
 
 # Get the FQDN of the deployed container
@@ -141,7 +141,7 @@ echo "Resource Group: $RESOURCE_GROUP"
 echo "Container Registry: $ACR_NAME"
 echo "Storage Account: $STORAGE_ACCOUNT"
 echo "Container Instance: $ACI_NAME"
-echo "Application URL: http://$FQDN"
+echo "Application URL: http://$FQDN:3000"
 echo ""
 echo "The recipe app is now running on Azure with persistent storage!"
 echo "New recipes added through the web interface will be saved to the Azure File Share."
