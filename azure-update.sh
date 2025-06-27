@@ -9,9 +9,15 @@ set -e
 # Configuration - modify these values to match your existing deployment
 RESOURCE_GROUP="recipe-app-rg"
 LOCATION="australiaeast"
-ACR_NAME=${ACR_NAME:-""}  # Will be prompted if not set
-ACI_NAME="recipe-app-container"
-STORAGE_ACCOUNT=${STORAGE_ACCOUNT:-""}  # Will be prompted if not set
+# Set USE_DATE_SUFFIX=true if your resources were created with date suffix
+USE_DATE_SUFFIX=${USE_DATE_SUFFIX:-false}
+DATE_SUFFIX=$(date +%s)
+
+# Default predictable names (set environment variables to override)
+ACR_NAME=${ACR_NAME:-"my-recipe-app-acr"}
+STORAGE_ACCOUNT=${STORAGE_ACCOUNT:-"myrecipeappstorage"}
+ACI_NAME="my-recipe-app-container"
+DNS_NAME="my-recipe-app"
 FILE_SHARE_NAME="recipe-data"
 IMAGE_NAME="my-recipe-app"
 IMAGE_TAG="latest"
@@ -32,16 +38,22 @@ fi
 
 echo "✅ Azure CLI check passed"
 
-# Prompt for ACR name if not provided
-if [ -z "$ACR_NAME" ]; then
-    echo -n "Enter your Azure Container Registry name: "
-    read ACR_NAME
+# Prompt for ACR name if not provided and not using default
+if [ -z "$ACR_NAME" ] || [ "$ACR_NAME" = "my-recipe-app-acr" ]; then
+    if [ -z "$ACR_NAME" ]; then
+        echo -n "Enter your Azure Container Registry name (default: my-recipe-app-acr): "
+        read user_input
+        ACR_NAME=${user_input:-"my-recipe-app-acr"}
+    fi
 fi
 
-# Prompt for Storage Account name if not provided
-if [ -z "$STORAGE_ACCOUNT" ]; then
-    echo -n "Enter your Storage Account name: "
-    read STORAGE_ACCOUNT
+# Prompt for Storage Account name if not provided and not using default
+if [ -z "$STORAGE_ACCOUNT" ] || [ "$STORAGE_ACCOUNT" = "myrecipeappstorage" ]; then
+    if [ -z "$STORAGE_ACCOUNT" ]; then
+        echo -n "Enter your Storage Account name (default: myrecipeappstorage): "
+        read user_input
+        STORAGE_ACCOUNT=${user_input:-"myrecipeappstorage"}
+    fi
 fi
 
 echo ""
@@ -49,6 +61,7 @@ echo "Resource Group: $RESOURCE_GROUP"
 echo "ACR Name: $ACR_NAME"
 echo "Storage Account: $STORAGE_ACCOUNT"
 echo "Container Instance: $ACI_NAME"
+echo "DNS Name: $DNS_NAME"
 echo ""
 
 # Verify resources exist
@@ -106,7 +119,7 @@ az container create \
     --registry-login-server "$ACR_LOGIN_SERVER" \
     --registry-username "$ACR_USERNAME" \
     --registry-password "$ACR_PASSWORD" \
-    --dns-name-label "$ACI_NAME-$(date +%s)" \
+    --dns-name-label "$DNS_NAME" \
     --ports 3000 \
     --protocol TCP \
     --cpu 0.5 \

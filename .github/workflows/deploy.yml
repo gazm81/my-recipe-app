@@ -8,7 +8,8 @@ on:
 env:
   RESOURCE_GROUP: recipe-app-rg
   ACR_NAME: ${{ secrets.ACR_NAME }}
-  ACI_NAME: recipe-app-container
+  ACI_NAME: my-recipe-app-container
+  DNS_NAME: my-recipe-app
   STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
   FILE_SHARE_NAME: recipe-data
   IMAGE_NAME: my-recipe-app
@@ -75,7 +76,7 @@ jobs:
           --registry-login-server ${{ steps.acr-creds.outputs.acr-login-server }} \
           --registry-username ${{ steps.acr-creds.outputs.acr-username }} \
           --registry-password ${{ steps.acr-creds.outputs.acr-password }} \
-          --dns-name-label $ACI_NAME-$(date +%s) \
+          --dns-name-label $DNS_NAME \
           --ports 3000 \
           --protocol TCP \
           --cpu 0.5 \
