@@ -24,7 +24,7 @@ To enable authentication, you need to create a GitHub OAuth App and configure th
    - Fill in the application details:
      - **Application name**: `My Recipe App` (or your preferred name)
      - **Homepage URL**: Your app's URL (e.g., `https://your-app.azurecontainer.io` or `http://localhost:3000` for local development)
-     - **Authorization callback URL**: `https://your-app.azurecontainer.io/auth/github/callback` (or `http://localhost:3000/auth/github/callback` for local development)
+     - **Authorization callback URL**: `https://my-recipe-app.australiaeast.azurecontainer.io/auth/github/callback` (or `http://localhost:3000/auth/github/callback` for local development)
    - Click **Register application**
    - Note the **Client ID** and generate a **Client Secret**
 
@@ -34,15 +34,14 @@ To enable authentication, you need to create a GitHub OAuth App and configure th
    GH_CLIENT_ID=your_github_client_id
    GH_CLIENT_SECRET=your_github_client_secret
    
-   # Optional - will default to localhost:PORT for development
-   CALLBACK_URL=https://your-app.azurecontainer.io/auth/github/callback
-   
    # Optional - for session security (will use default if not provided)
    SESSION_SECRET=your-random-session-secret
    ```
 
+   **Note:** The `CALLBACK_URL` is automatically configured for Azure deployments using the predictable FQDN format: `https://my-recipe-app.australiaeast.azurecontainer.io/auth/github/callback`
+
 3. **For Azure Deployment:**
-   Add these environment variables to your Azure Container Instance or App Service configuration.
+   Add the required environment variables (`GH_CLIENT_ID`, `GH_CLIENT_SECRET`, `SESSION_SECRET`) to your GitHub repository secrets. The `CALLBACK_URL` is automatically configured during deployment.
 
 4. **For Local Development:**
    - Create a `.env` file in the project root with the above variables, or
@@ -142,6 +141,8 @@ This app uses **predictable, consistent resource names** for reliable deployment
      - `GH_CLIENT_ID` (your GitHub OAuth app client ID)
      - `GH_CLIENT_SECRET` (your GitHub OAuth app client secret)
      - `SESSION_SECRET` (optional, random string for session security)
+
+   **Note:** The `CALLBACK_URL` is no longer required as a secret - it's automatically configured during deployment.
 
 3. **Deploy Automatically:**
    - Push changes to the `main` branch
