@@ -90,7 +90,7 @@ jobs:
             GH_CLIENT_ID=${{ secrets.GH_CLIENT_ID }} \
             GH_CLIENT_SECRET=${{ secrets.GH_CLIENT_SECRET }} \
             SESSION_SECRET=${{ secrets.SESSION_SECRET }} \
-            CALLBACK_URL=https://$DNS_NAME.australiaeast.azurecontainer.io/auth/github/callback \
+            CALLBACK_URL=http://$DNS_NAME.australiaeast.azurecontainer.io/auth/github/callback \
           --output table
           
     - name: Get deployment URL and verify
