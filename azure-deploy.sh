@@ -8,9 +8,20 @@ set -e  # Exit on any error
 # Configuration - modify these values as needed
 RESOURCE_GROUP="recipe-app-rg"
 LOCATION="australiaeast"
-ACR_NAME="recipeappacr$(date +%s)"  # Must be globally unique
-ACI_NAME="recipe-app-container"
-STORAGE_ACCOUNT="recipeappstorage$(date +%s | cut -c6-)"  # Must be globally unique
+# Set USE_DATE_SUFFIX=true to add date suffix for globally unique names
+USE_DATE_SUFFIX=${USE_DATE_SUFFIX:-false}
+DATE_SUFFIX=$(date +%s)
+
+if [ "$USE_DATE_SUFFIX" = "true" ]; then
+    ACR_NAME="my-recipe-app-acr-$DATE_SUFFIX"
+    STORAGE_ACCOUNT="myrecipeappstorage$(echo $DATE_SUFFIX | cut -c6-)"  # Storage account names have restrictions
+else
+    ACR_NAME="my-recipe-app-acr"
+    STORAGE_ACCOUNT="myrecipeappstorage"  # Must be globally unique - may fail if taken
+fi
+
+ACI_NAME="my-recipe-app-container"
+DNS_NAME="my-recipe-app"
 FILE_SHARE_NAME="recipe-data"
 IMAGE_NAME="my-recipe-app"
 IMAGE_TAG="latest"
@@ -20,6 +31,9 @@ echo "Resource Group: $RESOURCE_GROUP"
 echo "Location: $LOCATION"
 echo "ACR Name: $ACR_NAME"
 echo "Storage Account: $STORAGE_ACCOUNT"
+echo "Container Instance: $ACI_NAME"
+echo "DNS Name: $DNS_NAME"
+echo "Use Date Suffix: $USE_DATE_SUFFIX"
 
 # Check if Azure CLI is installed and user is logged in
 if ! command -v az &> /dev/null; then
@@ -103,7 +117,7 @@ az container create \
     --registry-login-server "$ACR_LOGIN_SERVER" \
     --registry-username "$ACR_USERNAME" \
     --registry-password "$ACR_PASSWORD" \
-    --dns-name-label "$ACI_NAME-$(date +%s)" \
+    --dns-name-label "$DNS_NAME" \
     --ports 3000 \
     --protocol TCP \
     --cpu 0.5 \

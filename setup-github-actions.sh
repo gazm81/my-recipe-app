@@ -13,8 +13,18 @@ echo "=================================================="
 RESOURCE_GROUP="recipe-app-rg"
 LOCATION="australiaeast"
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-ACR_NAME="recipeappacr$(date +%s)"
-STORAGE_ACCOUNT="recipeappstorage$(date +%s | cut -c6-)"
+# Set USE_DATE_SUFFIX=true to add date suffix for globally unique names
+USE_DATE_SUFFIX=${USE_DATE_SUFFIX:-true}  # Default to true for setup to ensure uniqueness
+DATE_SUFFIX=$(date +%s)
+
+if [ "$USE_DATE_SUFFIX" = "true" ]; then
+    ACR_NAME="my-recipe-app-acr-$DATE_SUFFIX"
+    STORAGE_ACCOUNT="myrecipeappstorage$(echo $DATE_SUFFIX | cut -c6-)"
+else
+    ACR_NAME="my-recipe-app-acr"
+    STORAGE_ACCOUNT="myrecipeappstorage"
+fi
+
 FILE_SHARE_NAME="recipe-data"
 SP_NAME="recipe-app-github-actions"
 
@@ -23,6 +33,7 @@ echo "Location: $LOCATION"
 echo "Subscription: $SUBSCRIPTION_ID"
 echo "ACR Name: $ACR_NAME"
 echo "Storage Account: $STORAGE_ACCOUNT"
+echo "Use Date Suffix: $USE_DATE_SUFFIX"
 echo ""
 
 # Check if Azure CLI is installed and user is logged in
