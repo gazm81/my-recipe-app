@@ -1,10 +1,18 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const passport = require('passport');
+const GitHubStrategy = require('passport-github2').Strategy;
+const session = require('express-session');
 const recipes = require('./data/recipes.json');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// GitHub OAuth configuration
+const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
+const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
+const CALLBACK_URL = process.env.CALLBACK_URL || `http://localhost:${PORT}/auth/github/callback`;
 
 // File path for persistent runtime recipes (will be on Azure File Share)
 const RUNTIME_RECIPES_FILE = path.join(__dirname, 'persistent-data', 'runtime-recipes.json');
@@ -38,20 +46,109 @@ function saveRuntimeRecipes() {
     }
 }
 
+// Passport configuration
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
+
+// GitHub Strategy
+if (GITHUB_CLIENT_ID && GITHUB_CLIENT_SECRET) {
+    passport.use(new GitHubStrategy({
+        clientID: GITHUB_CLIENT_ID,
+        clientSecret: GITHUB_CLIENT_SECRET,
+        callbackURL: CALLBACK_URL
+    }, (accessToken, refreshToken, profile, done) => {
+        // For this simple app, we'll just pass the profile data
+        return done(null, {
+            id: profile.id,
+            username: profile.username,
+            displayName: profile.displayName,
+            email: profile.emails ? profile.emails[0].value : null,
+            avatar: profile.photos ? profile.photos[0].value : null
+        });
+    }));
+} else {
+    console.warn('GitHub OAuth not configured. Set GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET environment variables.');
+}
+
+// Authentication middleware
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
 // Middleware
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Session configuration
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'recipe-app-secret-key-change-in-production',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { 
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    }
+}));
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Make user available in all templates
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    res.locals.isAuthenticated = req.isAuthenticated();
+    next();
+});
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Authentication routes
+app.get('/login', (req, res) => {
+    if (req.isAuthenticated()) {
+        return res.redirect('/');
+    }
+    res.render('login');
+});
+
+// Only add GitHub routes if OAuth is configured
+if (GITHUB_CLIENT_ID && GITHUB_CLIENT_SECRET) {
+    app.get('/auth/github', passport.authenticate('github', { scope: ['user:email'] }));
+
+    app.get('/auth/github/callback', 
+        passport.authenticate('github', { failureRedirect: '/login' }),
+        (req, res) => {
+            res.redirect('/');
+        }
+    );
+}
+
+app.get('/logout', (req, res) => {
+    req.logout((err) => {
+        if (err) {
+            console.error('Logout error:', err);
+        }
+        res.redirect('/');
+    });
+});
+
 // Routes
-app.get('/', (req, res) => {
+app.get('/', ensureAuthenticated, (req, res) => {
     const allRecipes = [...recipes, ...runtimeRecipes];
     res.render('index', { recipes: allRecipes });
 });
 
-app.get('/recipe/:id', (req, res) => {
+app.get('/recipe/:id', ensureAuthenticated, (req, res) => {
     const allRecipes = [...recipes, ...runtimeRecipes];
     const recipe = allRecipes.find(r => r.id === req.params.id);
     if (!recipe) {
@@ -60,11 +157,11 @@ app.get('/recipe/:id', (req, res) => {
     res.render('recipe', { recipe });
 });
 
-app.get('/add', (req, res) => {
+app.get('/add', ensureAuthenticated, (req, res) => {
     res.render('add');
 });
 
-app.post('/add', (req, res) => {
+app.post('/add', ensureAuthenticated, (req, res) => {
     const { title, ingredients, method, timing, drinks } = req.body;
     
     const newRecipe = {
@@ -86,7 +183,7 @@ app.post('/add', (req, res) => {
 });
 
 // Edit recipe routes
-app.get('/edit/:id', (req, res) => {
+app.get('/edit/:id', ensureAuthenticated, (req, res) => {
     const recipe = runtimeRecipes.find(r => r.id === req.params.id);
     if (!recipe) {
         return res.status(404).render('error', { message: 'Recipe not found or cannot be edited' });
@@ -94,7 +191,7 @@ app.get('/edit/:id', (req, res) => {
     res.render('edit', { recipe });
 });
 
-app.post('/edit/:id', (req, res) => {
+app.post('/edit/:id', ensureAuthenticated, (req, res) => {
     const { title, ingredients, method, timing, drinks } = req.body;
     const recipeIndex = runtimeRecipes.findIndex(r => r.id === req.params.id);
     
@@ -117,7 +214,7 @@ app.post('/edit/:id', (req, res) => {
 });
 
 // Delete recipe route
-app.post('/delete/:id', (req, res) => {
+app.post('/delete/:id', ensureAuthenticated, (req, res) => {
     const recipeIndex = runtimeRecipes.findIndex(r => r.id === req.params.id);
     
     if (recipeIndex === -1) {

@@ -12,6 +12,15 @@
         <nav>
             <a href="/">Home</a>
             <a href="/add">Add Recipe</a>
+            <% if (isAuthenticated) { %>
+                <div class="user-info">
+                    <% if (user.avatar) { %>
+                        <img src="<%= user.avatar %>" alt="<%= user.displayName || user.username %>" class="user-avatar">
+                    <% } %>
+                    <span>Hello, <%= user.displayName || user.username %>!</span>
+                    <a href="/logout" class="logout-link">Logout</a>
+                </div>
+            <% } %>
         </nav>
     </header>
     
