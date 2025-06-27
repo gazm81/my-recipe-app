@@ -129,7 +129,7 @@ az container create \
     --azure-file-volume-account-key "$STORAGE_KEY" \
     --azure-file-volume-share-name "$FILE_SHARE_NAME" \
     --azure-file-volume-mount-path "/app/persistent-data" \
-    --environment-variables "NODE_ENV=production" \
+    --environment-variables "NODE_ENV=production" "CALLBACK_URL=https://$DNS_NAME.$LOCATION.azurecontainer.io/auth/github/callback" \
     --output table
 
 # Get the new deployment URL
