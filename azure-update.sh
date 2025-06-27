@@ -129,7 +129,7 @@ az container create \
     --azure-file-volume-account-key "$STORAGE_KEY" \
     --azure-file-volume-share-name "$FILE_SHARE_NAME" \
     --azure-file-volume-mount-path "/app/persistent-data" \
-    --environment-variables "NODE_ENV=production" "CALLBACK_URL=http://$DNS_NAME.$LOCATION.azurecontainer.io/auth/github/callback" \
+    --environment-variables "NODE_ENV=production" "CALLBACK_URL=http://$DNS_NAME.$LOCATION.azurecontainer.io:3000/auth/github/callback" \
     --output table
 
 # Get the new deployment URL
@@ -138,7 +138,7 @@ FQDN=$(az container show --name "$ACI_NAME" --resource-group "$RESOURCE_GROUP" -
 echo ""
 echo "🎉 Update completed successfully!"
 echo "================================="
-echo "Application URL: http://$FQDN"
+echo "Application URL: http://$FQDN:3000"
 echo "Container Image: $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG"
 echo "Persistent storage preserved: ✅"
 echo ""
