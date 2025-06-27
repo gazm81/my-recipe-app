@@ -10,8 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // GitHub OAuth configuration
-const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
-const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
+const GITHUB_CLIENT_ID = process.env.GH_CLIENT_ID;
+const GITHUB_CLIENT_SECRET = process.env.GH_CLIENT_SECRET;
 const CALLBACK_URL = process.env.CALLBACK_URL || `http://localhost:${PORT}/auth/github/callback`;
 
 // File path for persistent runtime recipes (will be on Azure File Share)
@@ -72,7 +72,7 @@ if (GITHUB_CLIENT_ID && GITHUB_CLIENT_SECRET) {
         });
     }));
 } else {
-    console.warn('GitHub OAuth not configured. Set GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET environment variables.');
+    console.warn('GitHub OAuth not configured. Set GH_CLIENT_ID and GH_CLIENT_SECRET environment variables.');
 }
 
 // Authentication middleware
