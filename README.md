@@ -31,8 +31,8 @@ To enable authentication, you need to create a GitHub OAuth App and configure th
 2. **Configure Environment Variables:**
    ```bash
    # Required for GitHub OAuth
-   GITHUB_CLIENT_ID=your_github_client_id
-   GITHUB_CLIENT_SECRET=your_github_client_secret
+   GH_CLIENT_ID=your_github_client_id
+   GH_CLIENT_SECRET=your_github_client_secret
    
    # Optional - will default to localhost:PORT for development
    CALLBACK_URL=https://your-app.azurecontainer.io/auth/github/callback
@@ -123,8 +123,8 @@ The repository includes a GitHub Actions workflow that automatically deploys you
      - `AZURE_CREDENTIALS` (JSON output from setup script)
      - `ACR_NAME` (your container registry name)
      - `STORAGE_ACCOUNT` (your storage account name)
-     - `GITHUB_CLIENT_ID` (your GitHub OAuth app client ID)
-     - `GITHUB_CLIENT_SECRET` (your GitHub OAuth app client secret)
+     - `GH_CLIENT_ID` (your GitHub OAuth app client ID)
+     - `GH_CLIENT_SECRET` (your GitHub OAuth app client secret)
      - `SESSION_SECRET` (optional, random string for session security)
 
 3. **Deploy Automatically:**
