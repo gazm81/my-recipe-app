@@ -18,10 +18,10 @@ USE_DATE_SUFFIX=${USE_DATE_SUFFIX:-true}  # Default to true for setup to ensure 
 DATE_SUFFIX=$(date +%s)
 
 if [ "$USE_DATE_SUFFIX" = "true" ]; then
-    ACR_NAME="my-recipe-app-acr-$DATE_SUFFIX"
+    ACR_NAME="myrecipeappacr$DATE_SUFFIX"
     STORAGE_ACCOUNT="myrecipeappstorage$(echo $DATE_SUFFIX | cut -c6-)"
 else
-    ACR_NAME="my-recipe-app-acr"
+    ACR_NAME="myrecipeappacr"
     STORAGE_ACCOUNT="myrecipeappstorage"
 fi
 

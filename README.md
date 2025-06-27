@@ -109,7 +109,7 @@ The repository includes a GitHub Actions workflow that automatically deploys you
 
 This app uses **predictable, consistent resource names** for reliable deployments:
 
-- **Container Registry**: `my-recipe-app-acr`
+- **Container Registry**: `myrecipeappacr`
 - **Storage Account**: `myrecipeappstorage`  
 - **Container Instance**: `my-recipe-app-container`
 - **DNS Name**: `my-recipe-app` (predictable URL: `my-recipe-app.australiaeast.azurecontainer.io`)
@@ -185,7 +185,7 @@ chmod +x azure-update.sh
 ./azure-update.sh
 
 # OR set resource names as environment variables
-ACR_NAME=my-recipe-app-acr STORAGE_ACCOUNT=myrecipeappstorage ./azure-update.sh
+ACR_NAME=myrecipeappacr STORAGE_ACCOUNT=myrecipeappstorage ./azure-update.sh
 ```
 
 ### Monitoring & Troubleshooting
@@ -227,7 +227,7 @@ If you prefer to deploy manually:
 # Set variables
 RESOURCE_GROUP="recipe-app-rg"
 LOCATION="australiaeast"
-ACR_NAME="my-recipe-app-acr"  # Or add timestamp: my-recipe-app-acr-$(date +%s)
+ACR_NAME="myrecipeappacr"  # Or add timestamp: myrecipeappacr$(date +%s)
 STORAGE_ACCOUNT="myrecipeappstorage"  # Or add timestamp: myrecipeappstorage$(date +%s)
 
 # Create resource group

@@ -14,7 +14,7 @@ USE_DATE_SUFFIX=${USE_DATE_SUFFIX:-false}
 DATE_SUFFIX=$(date +%s)
 
 # Default predictable names (set environment variables to override)
-ACR_NAME=${ACR_NAME:-"my-recipe-app-acr"}
+ACR_NAME=${ACR_NAME:-"myrecipeappacr"}
 STORAGE_ACCOUNT=${STORAGE_ACCOUNT:-"myrecipeappstorage"}
 ACI_NAME="my-recipe-app-container"
 DNS_NAME="my-recipe-app"
@@ -39,11 +39,11 @@ fi
 echo "✅ Azure CLI check passed"
 
 # Prompt for ACR name if not provided and not using default
-if [ -z "$ACR_NAME" ] || [ "$ACR_NAME" = "my-recipe-app-acr" ]; then
+if [ -z "$ACR_NAME" ] || [ "$ACR_NAME" = "myrecipeappacr" ]; then
     if [ -z "$ACR_NAME" ]; then
-        echo -n "Enter your Azure Container Registry name (default: my-recipe-app-acr): "
+        echo -n "Enter your Azure Container Registry name (default: myrecipeappacr): "
         read user_input
-        ACR_NAME=${user_input:-"my-recipe-app-acr"}
+        ACR_NAME=${user_input:-"myrecipeappacr"}
     fi
 fi
 
