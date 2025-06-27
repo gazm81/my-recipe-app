@@ -105,6 +105,22 @@ This app is designed to be deployed on Azure with persistent storage and automat
 
 The repository includes a GitHub Actions workflow that automatically deploys your app when you push changes to the main branch.
 
+#### Resource Naming Convention
+
+This app uses **predictable, consistent resource names** for reliable deployments:
+
+- **Container Registry**: `my-recipe-app-acr`
+- **Storage Account**: `myrecipeappstorage`  
+- **Container Instance**: `my-recipe-app-container`
+- **DNS Name**: `my-recipe-app` (predictable URL: `my-recipe-app.australiaeast.azurecontainer.io`)
+
+**Benefits:**
+- 🎯 **Predictable URLs** - No more changing DNS names between deployments
+- 🔄 **Reliable Callbacks** - OAuth and webhooks work consistently
+- 📝 **Easy Management** - Simple to remember and reference resource names
+
+**Note:** For globally unique resources (ACR and Storage), you can set `USE_DATE_SUFFIX=true` to add timestamps if the default names are already taken.
+
 #### Setup CI/CD Pipeline
 
 1. **Initial Azure Setup:**
@@ -150,8 +166,11 @@ For the initial deployment or if you prefer manual deployment:
 # Make the script executable
 chmod +x azure-deploy.sh
 
-# Deploy to Azure
+# Deploy with predictable names (default)
 ./azure-deploy.sh
+
+# OR deploy with date suffix for uniqueness
+USE_DATE_SUFFIX=true ./azure-deploy.sh
 ```
 
 #### Update Existing Deployment
@@ -162,8 +181,11 @@ To manually update an existing deployment with new code changes:
 # Make the update script executable  
 chmod +x azure-update.sh
 
-# Update existing deployment
+# Update existing deployment (will prompt for resource names if needed)
 ./azure-update.sh
+
+# OR set resource names as environment variables
+ACR_NAME=my-recipe-app-acr STORAGE_ACCOUNT=myrecipeappstorage ./azure-update.sh
 ```
 
 ### Monitoring & Troubleshooting
@@ -176,13 +198,13 @@ chmod +x azure-update.sh
 #### Azure Container Monitoring
 ```bash
 # Check container status
-az container show --name recipe-app-container --resource-group recipe-app-rg
+az container show --name my-recipe-app-container --resource-group recipe-app-rg
 
 # View container logs
-az container logs --name recipe-app-container --resource-group recipe-app-rg
+az container logs --name my-recipe-app-container --resource-group recipe-app-rg
 
 # Follow live logs
-az container logs --name recipe-app-container --resource-group recipe-app-rg --follow
+az container logs --name my-recipe-app-container --resource-group recipe-app-rg --follow
 ```
 
 #### Common Issues
@@ -205,14 +227,14 @@ If you prefer to deploy manually:
 # Set variables
 RESOURCE_GROUP="recipe-app-rg"
 LOCATION="australiaeast"
-ACR_NAME="myrecipeappacr$(date +%s)"
-STORAGE_ACCOUNT="recipestorage$(date +%s)"
+ACR_NAME="my-recipe-app-acr"  # Or add timestamp: my-recipe-app-acr-$(date +%s)
+STORAGE_ACCOUNT="myrecipeappstorage"  # Or add timestamp: myrecipeappstorage$(date +%s)
 
 # Create resource group
 az group create --name $RESOURCE_GROUP --location $LOCATION
 
-# Create container registry
-az acr create --name $ACR_NAME --resource-group $RESOURCE_GROUP --sku Basic
+# Create container registry  
+az acr create --name $ACR_NAME --resource-group $RESOURCE_GROUP --sku Basic --admin-enabled true
 
 # Create storage account and file share
 az storage account create --name $STORAGE_ACCOUNT --resource-group $RESOURCE_GROUP --location $LOCATION --sku Standard_LRS
@@ -230,13 +252,13 @@ az acr build --registry $ACR_NAME --image my-recipe-app:latest .
 ```bash
 # Deploy to ACI with persistent storage
 az container create \
-  --name recipe-app-container \
+  --name my-recipe-app-container \
   --resource-group $RESOURCE_GROUP \
   --image $ACR_NAME.azurecr.io/my-recipe-app:latest \
   --os-type Linux \
   --registry-login-server $ACR_NAME.azurecr.io \
   --ports 3000 \
-  --dns-name-label recipe-app-$(date +%s) \
+  --dns-name-label my-recipe-app \
   --azure-file-volume-account-name $STORAGE_ACCOUNT \
   --azure-file-volume-account-key $STORAGE_KEY \
   --azure-file-volume-share-name recipe-data \
