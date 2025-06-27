@@ -9,6 +9,46 @@ A containerized web application for hosting and managing recipes. This app serve
 - ➕ **Add New Recipes**: Add recipes through the web interface (stored in memory)
 - 🐳 **Containerized**: Easy deployment with Docker
 - 📋 **Pre-loaded Recipes**: Comes with existing recipes from the repository
+- 🔐 **GitHub Authentication**: Secure access with GitHub OAuth
+
+## Authentication
+
+This app requires GitHub authentication to access any content. Users must sign in with their GitHub account to view, add, edit, or delete recipes.
+
+### Setting up GitHub OAuth
+
+To enable authentication, you need to create a GitHub OAuth App and configure the environment variables:
+
+1. **Create a GitHub OAuth App:**
+   - Go to [GitHub Settings > Developer settings > OAuth Apps](https://github.com/settings/applications/new)
+   - Fill in the application details:
+     - **Application name**: `My Recipe App` (or your preferred name)
+     - **Homepage URL**: Your app's URL (e.g., `https://your-app.azurecontainer.io` or `http://localhost:3000` for local development)
+     - **Authorization callback URL**: `https://your-app.azurecontainer.io/auth/github/callback` (or `http://localhost:3000/auth/github/callback` for local development)
+   - Click **Register application**
+   - Note the **Client ID** and generate a **Client Secret**
+
+2. **Configure Environment Variables:**
+   ```bash
+   # Required for GitHub OAuth
+   GITHUB_CLIENT_ID=your_github_client_id
+   GITHUB_CLIENT_SECRET=your_github_client_secret
+   
+   # Optional - will default to localhost:PORT for development
+   CALLBACK_URL=https://your-app.azurecontainer.io/auth/github/callback
+   
+   # Optional - for session security (will use default if not provided)
+   SESSION_SECRET=your-random-session-secret
+   ```
+
+3. **For Azure Deployment:**
+   Add these environment variables to your Azure Container Instance or App Service configuration.
+
+4. **For Local Development:**
+   - Create a `.env` file in the project root with the above variables, or
+   - Set them as environment variables in your shell before running `npm start`
+
+**Note:** Without proper GitHub OAuth configuration, the app will show a configuration error page with setup instructions.
 
 ## Quick Start
 
@@ -83,6 +123,9 @@ The repository includes a GitHub Actions workflow that automatically deploys you
      - `AZURE_CREDENTIALS` (JSON output from setup script)
      - `ACR_NAME` (your container registry name)
      - `STORAGE_ACCOUNT` (your storage account name)
+     - `GITHUB_CLIENT_ID` (your GitHub OAuth app client ID)
+     - `GITHUB_CLIENT_SECRET` (your GitHub OAuth app client secret)
+     - `SESSION_SECRET` (optional, random string for session security)
 
 3. **Deploy Automatically:**
    - Push changes to the `main` branch
