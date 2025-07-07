@@ -118,5 +118,64 @@
       "Water with lemon"
     ],
     "source": "original"
+  },
+  {
+    "id": "mums-lasagne",
+    "title": "Mum's Lasagne",
+    "serves": "4",
+    "prepTime": "45 mins",
+    "cookTime": "35-40 mins",
+    "ingredients": [
+      "2 tbsp olive oil",
+      "1 onion, chopped (frozen will do 250gm)",
+      "1 carrot, chopped",
+      "1 clove garlic, chopped (minced garlic will do)",
+      "500g beef mince",
+      "5 tbsp tomato paste",
+      "800g canned tomatoes (chopped)",
+      "2 cups chicken stock",
+      "Salt and pepper to taste",
+      "Dash of red wine",
+      "1 tbsp Worcestershire sauce",
+      "1/2 tsp chilli flakes",
+      "1 tsp Italian herbs",
+      "2 tbsp butter",
+      "2 tbsp flour",
+      "2 cups milk",
+      "Pinch of nutmeg",
+      "125g mozzarella or cheddar cheese",
+      "60g Parmesan or cheddar cheese, grated",
+      "250g San Remo Lasagne Sheets"
+    ],
+    "method": [
+      "Heat oil in large pan",
+      "Add onion, carrot and garlic. Cook until soft",
+      "Add beef mince, cook until brown",
+      "Stir in tomato paste, canned tomatoes and chicken stock",
+      "Add in wine, herbs and Worcestershire",
+      "Season with salt & pepper",
+      "Cover and cook gently 20 minutes",
+      "Melt butter in saucepan",
+      "Stir in flour and cook for 2 minutes over gentle heat",
+      "Remove from heat, stir in milk",
+      "Return to heat, stir until thick",
+      "Season with salt, pepper and nutmeg",
+      "Add cheese, stirring until cheese melts",
+      "Preheat oven to 180°C",
+      "Pour half of meat sauce into lightly greased pan",
+      "Alternate layers of lasagne, meat and white sauce",
+      "End with white sauce",
+      "Sprinkle with cheddar or Parmesan",
+      "Cook 35-40 minutes",
+      "Stand 5 minutes before serving"
+    ],
+    "timing": "Total Time: 90 minutes (45 min prep + 35-40 min cooking)",
+    "recommendedDrinks": [
+      "Red wine",
+      "Chianti",
+      "Sparkling water",
+      "Italian beer"
+    ],
+    "source": "family"
   }
 ]
