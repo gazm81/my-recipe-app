@@ -223,5 +223,48 @@
       "Italian beer"
     ],
     "source": "family"
+  },
+  {
+    "id": "mums-self-saucing-chocolate-pudding",
+    "title": "Mums Self-Saucing Chocolate Pudding",
+    "serves": "6-8",
+    "prepTime": "15 mins",
+    "cookTime": "30-35 mins",
+    "ingredients": [
+      "1 cup (150g) all-purpose flour",
+      "1/4 cup (25g) cocoa powder",
+      "2/3 cup (150g) granulated sugar",
+      "2 tsp baking powder",
+      "Pinch of salt",
+      "1/2 cup (125ml) milk",
+      "2 tbsp (30g) unsalted butter, melted (or neutral oil)",
+      "1 tsp vanilla extract",
+      "1/2 cup (100g) brown sugar (for sauce)",
+      "2 tbsp (20g) cocoa powder (for sauce)",
+      "1 1/4 cups (310ml) boiling water (for sauce)"
+    ],
+    "method": [
+      "Preheat your oven to 180°C (350°F)",
+      "Grease a 1.5L (6-cup) baking dish with butter or cooking spray",
+      "In the bowl of your Breville stand mixer, add the flour, cocoa powder, granulated sugar, baking powder, and salt",
+      "Using the flat beater on the 'Light Mixing' setting, stir until combined",
+      "Add milk, melted butter, and vanilla extract, then mix on the same setting until smooth",
+      "Pour the batter into the greased baking dish and spread evenly with a spatula",
+      "Combine the brown sugar and cocoa powder in a small bowl",
+      "Sprinkle this dry mixture evenly over the batter in the dish",
+      "Slowly pour the boiling water over the back of a spoon to cover the top (this ensures it doesn't disrupt the batter)",
+      "Place the dish in the oven and bake for 30–35 minutes or until the top is firm to the touch, and a luscious sauce is bubbling underneath",
+      "Allow the pudding to cool for about 5 minutes",
+      "Scoop into bowls, ensuring you get both the cake and the sauce",
+      "Serve with vanilla ice cream, whipped cream, or a dollop of custard"
+    ],
+    "timing": "Total Time: 50 minutes (15 min prep + 30-35 min baking + 5 min cooling)",
+    "recommendedDrinks": [
+      "Coffee",
+      "Black tea",
+      "Dessert wine",
+      "Milk"
+    ],
+    "source": "family"
   }
 ]
