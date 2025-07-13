@@ -120,6 +120,52 @@
     "source": "original"
   },
   {
+    "id": "ultimate-beef-rendang",
+    "title": "Ultimate Instant Pot Beef Rendang",
+    "serves": "4",
+    "prepTime": "15 mins",
+    "cookTime": "~2.5 hours",
+    "ingredients": [
+      "800g beef chuck, cut into 4–5 cm chunks",
+      "1 jar Rendang curry paste (180–200g)",
+      "1 onion, thinly sliced",
+      "3 garlic cloves, minced (or 1 tsp jarred garlic)",
+      "1 tbsp ginger, minced (or jar)",
+      "400ml coconut cream (not milk)",
+      "1/2 cup beef stock",
+      "1 stick cinnamon",
+      "1 dried bay leaf (or 2 kaffir lime leaves)",
+      "1/2 cup toasted shredded coconut (optional but recommended)",
+      "Oil for sautéing",
+      "Salt and sugar, to taste"
+    ],
+    "method": [
+      "Set Instant Pot to Sauté mode.",
+      "Add oil and sauté onion until soft (2–3 minutes).",
+      "Add garlic, ginger, and the Rendang paste. Cook for 1–2 minutes until fragrant.",
+      "Push mixture to one side. Add beef chunks in batches, searing both sides (2–3 mins total per batch).",
+      "Stir everything together to coat the beef well.",
+      "Add coconut cream, beef stock, cinnamon stick, and bay leaf.",
+      "Stir and scrape up browned bits.",
+      "Pressure cook on High Pressure for 20 minutes.",
+      "Perform Quick Release.",
+      "Switch to Slow Cook mode, low heat, lid on but vented or glass lid preferred.",
+      "Let simmer for 1 hour, stirring occasionally.",
+      "Switch back to Sauté mode, lid off.",
+      "Stir in toasted coconut (if using).",
+      "Simmer for 15 minutes, stirring every few minutes, until sauce is thick, dark, and clinging to the beef.",
+      "Add salt and sugar to taste (start with ½ tsp salt, 1 tsp sugar)."
+    ],
+    "timing": "🔥 Step 1: Build the base (Sauté – 10 minutes) | ⚙️ Step 2: Tenderize (Pressure Cook – 20 minutes) | 💤 Step 3: Slow develop flavor (Slow Cook – 1 hour) | 🔥 Step 4: Final reduction (Sauté – 15 minutes) | 🍚 Serve with steamed jasmine or basmati rice, garnish with chopped coriander and lime wedge",
+    "recommendedDrinks": [
+      "Indonesian beer",
+      "Coconut water",
+      "Jasmine tea",
+      "Sparkling water with lime"
+    ],
+    "source": "traditional"
+  },
+  {
     "id": "mums-lasagne",
     "title": "Mum's Lasagne",
     "serves": "4",
