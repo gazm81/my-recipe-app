@@ -10,6 +10,43 @@ A containerized web application for hosting and managing recipes. This app serve
 - 🐳 **Containerized**: Easy deployment with Docker
 - 📋 **Pre-loaded Recipes**: Comes with existing recipes from the repository
 - 🔐 **GitHub Authentication**: Secure access with GitHub OAuth
+- 🌐 **GitHub Pages**: Public static site automatically generated from recipes.json
+
+## GitHub Pages Static Site
+
+In addition to the full-featured Azure deployment, this repository automatically generates a **public GitHub Pages site** that displays all recipes from `data/recipes.json`.
+
+### How it Works
+
+- **Static Site Generation**: A Node.js script (`generate-static-site.js`) reads recipes from `data/recipes.json` and generates HTML pages
+- **Automatic Deployment**: GitHub Actions automatically builds and deploys the static site when recipes are updated
+- **Public Access**: No authentication required - anyone can view the recipes
+
+### Accessing the Static Site
+
+The GitHub Pages site is automatically available at:
+`https://gazm81.github.io/my-recipe-app/`
+
+### Local Static Site Development
+
+```bash
+# Generate static site locally
+npm run build:static
+
+# Serve locally for testing
+cd docs && python3 -m http.server 8080
+# Visit http://localhost:8080
+```
+
+### Features of the Static Site
+
+- 📱 **Responsive Design**: Works on all devices
+- 🎨 **Clean UI**: Modern card-based layout
+- 🔍 **Recipe Details**: Individual pages for each recipe
+- 🏷️ **Metadata Display**: Prep time, cook time, serving size
+- 📊 **Recipe Grid**: Easy browsing of all available recipes
+
+The static site automatically updates whenever `data/recipes.json` is modified, ensuring the public site always reflects the latest recipe collection.
 
 ## Authentication
 
