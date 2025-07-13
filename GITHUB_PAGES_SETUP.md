@@ -46,3 +46,13 @@ If the deployment fails:
 2. Ensure GitHub Pages is enabled in Settings
 3. Verify the docs/ folder contains the generated files
 4. Make sure the workflow has proper permissions
+
+## Recent Updates
+
+**2024**: Updated GitHub Actions to latest versions to fix deprecated action warnings:
+- `actions/setup-node@v3` → `v4`
+- `actions/configure-pages@v3` → `v5`  
+- `actions/upload-pages-artifact@v2` → `v3`
+- `actions/deploy-pages@v2` → `v4`
+
+This resolved the "deprecated version of actions/upload-artifact: v3" error.
