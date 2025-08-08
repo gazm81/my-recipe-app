@@ -266,5 +266,47 @@
       "Milk"
     ],
     "source": "family"
+  },
+  {
+    "id": "pork-carnitas",
+    "title": "Pork Carnitas (2 kg) – Pressure Cooker + Air Fryer",
+    "serves": "8–10",
+    "prepTime": "10 mins",
+    "cookTime": "70 min pressure + 6-8 min air fry",
+    "ingredients": [
+      "2 kg pork shoulder, trimmed of excess fat and cut into 4–5 large chunks",
+      "30 g taco seasoning (about 2 heaped tablespoons)",
+      "200 g frozen diced onion",
+      "15–20 g jarred minced garlic (1 heaped tablespoon = ~15 g)",
+      "250 ml total liquid (choose one option below):",
+      "Option 1: 250 ml chicken stock",
+      "Option 2: 125 ml stock + 125 ml orange juice",
+      "Juice of 1 lime",
+      "Salt & pepper to taste",
+      "Optional: extra taco seasoning or smoked paprika to finish"
+    ],
+    "method": [
+      "Rub pork pieces all over with 30 g taco seasoning.",
+      "Lightly season with salt and pepper if your taco mix is low-salt.",
+      "Add frozen onion and jarred garlic to the bottom of your pressure cooker.",
+      "Pour in liquid (stock/juice mix) and lime juice.",
+      "Place pork pieces on top.",
+      "Seal lid and cook on high pressure for 70 minutes.",
+      "Use quick release when done.",
+      "Remove pork and shred with two forks.",
+      "Discard excess fat if visible. You can mix the onions and juices back in or reduce the liquid separately for extra richness.",
+      "Preheat air fryer to 200°C (400°F).",
+      "Place shredded pork in a single layer (work in batches).",
+      "Air fry for 6–8 minutes, shaking/tossing halfway through until edges are crispy.",
+      "Serve with warm tortillas, avocado, salsa, sour cream, cheese, lime wedges, or on rice, in burrito bowls, or with corn chips."
+    ],
+    "timing": "Total Time: ~1 hr 25 min (10 min prep + 70 min pressure cook + 6-8 min air fry per batch)",
+    "recommendedDrinks": [
+      "Mexican beer",
+      "Margaritas",
+      "Lime sparkling water",
+      "Horchata"
+    ],
+    "source": "original"
   }
 ]
