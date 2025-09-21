@@ -364,5 +364,65 @@
       "Horchata"
     ],
     "source": "original"
+  },
+  {
+    "id": "chuck-steak-chilli-con-carne",
+    "title": "Chuck Steak Chilli Con Carne",
+    "serves": "6–8",
+    "prepTime": "20 mins",
+    "cookTime": "Pressure: 40 mins + Simmer: 15-20 mins",
+    "ingredients": [
+      "1 kg chuck steak, trimmed and cut into 2–3 cm cubes",
+      "2 tbsp olive oil (or beef dripping if you've got it)",
+      "2 onions, finely diced",
+      "4 garlic cloves, minced",
+      "2 red capsicums, diced",
+      "2–3 fresh chillies, chopped (optional, adjust heat level)",
+      "2 tsp ground cumin",
+      "2 tsp smoked paprika",
+      "2 tsp ground coriander",
+      "1–2 tsp chilli powder (to taste)",
+      "1 tsp dried oregano",
+      "2 tbsp tomato paste",
+      "2 × 400 g tins chopped tomatoes",
+      "2 × 400 g tins beans (kidney, black, pinto — mix is nice), drained",
+      "500 ml beef stock (or half stock / half dark beer)",
+      "2 tbsp Worcestershire sauce",
+      "1 small square dark chocolate (70%) (or 1 tsp cocoa powder)",
+      "1–2 tsp brown sugar (to balance acidity)",
+      "Salt & black pepper",
+      "1 stick celery + 1 carrot, finely diced (optional - adds sweetness/body)",
+      "1 tbsp chipotle in adobo or ½ tsp chipotle powder (optional - smoky heat)",
+      "1 bay leaf (optional)"
+    ],
+    "method": [
+      "🔥 Brown the beef",
+      "Heat oil in your pressure cooker/large pot.",
+      "Sear chuck steak in small batches until well browned. Remove and set aside.",
+      "🧅 Build the base",
+      "Add onion, capsicum, celery/carrot (if using). Sauté until softened.",
+      "Stir in garlic, fresh chilli, and all dried spices. Cook 1–2 min until fragrant.",
+      "Add tomato paste and cook another minute (this deepens flavour).",
+      "🥘 Combine",
+      "Return beef to the pot.",
+      "Add tomatoes, beef stock/beer, Worcestershire, bay leaf (if using).",
+      "Stir, bring to a simmer.",
+      "⏲️ Cook",
+      "Pressure cooker: 40 min on High Pressure, natural release.",
+      "Slow cooker: 8 hrs on Low or 5 hrs on High.",
+      "Stovetop/oven: 2.5–3 hrs gentle simmer, lid on, stir occasionally.",
+      "✨ Finish",
+      "Once beef is fork-tender, stir in beans, chocolate, and sugar.",
+      "Simmer gently for 15–20 min (uncovered) to thicken and let flavours meld.",
+      "Taste, adjust salt/pepper, balance with more sugar/chilli if needed."
+    ],
+    "timing": "Total Time: ~1.5 hours (20 min prep + 40 min pressure + 15-20 min finishing) | Method: Pressure Cook + Simmer | Serving: With rice, tortillas, or cornbread. Top with sour cream, cheese, jalapeños, and fresh coriander. Leftovers improve overnight!",
+    "recommendedDrinks": [
+      "Mexican beer",
+      "Dark beer or stout",
+      "Red wine",
+      "Sparkling water with lime"
+    ],
+    "source": "original"
   }
 ]
