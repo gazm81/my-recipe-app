@@ -424,5 +424,47 @@
       "Sparkling water with lime"
     ],
     "source": "original"
+  },
+  {
+    "id": "instant-pot-chicken",
+    "title": "Instant Pot Whole Chicken with Air-Fryer Grill Finish & Rich White-Wine Gravy",
+    "serves": "4–6",
+    "prepTime": "15 mins",
+    "cookTime": "30 min pressure + 5-7 min air fry",
+    "ingredients": [
+      "1 whole chicken (1.4–1.7 kg ideal for pressure cooking)",
+      "1 tbsp olive oil",
+      "1 tsp paprika",
+      "½ tsp black pepper",
+      "1 tsp salt",
+      "4 cloves garlic (whole, peeled)",
+      "4 sprigs thyme (or 1 tsp dried)",
+      "1 large onion, sliced",
+      "2 carrots, chopped",
+      "2 celery sticks, chopped",
+      "1 cup (250 mL) chicken stock or water",
+      "¼ cup white wine (for gravy)",
+      "1 tbsp cornflour + 1 tbsp cold water (slurry)",
+      "Optional: 1 tbsp butter (for gloss & richness)",
+      "Salt/pepper to taste"
+    ],
+    "method": [
+      "Prepare the chicken: Pat dry thoroughly. Rub with olive oil, paprika, pepper, and salt. Stuff garlic + thyme into the cavity.",
+      "Sauté in the Instant Pot: Press Sauté → High. Add a splash of olive oil. Cook the onions for 2–3 minutes. Add carrots + celery and stir. Move veggies aside and brown the chicken on all sides (4–6 minutes).",
+      "Add liquid + pressure cook: Lift chicken out briefly. Spread vegetables evenly across the bottom. Add 1 cup stock/water. Return chicken on top, breast side up. Cancel sauté. Seal the lid.",
+      "Pressure Cook: High pressure – 30 minutes (for 1.4–1.7 kg). Natural release for 10–15 minutes, then quick-release remaining pressure.",
+      "Crisp the chicken in the air fryer (optional): Carefully lift chicken out. Transfer to air-fryer basket. Air fry 200°C for 5–7 minutes, until skin is crisp and bronzed.",
+      "Make the White-Wine Gravy: Pour all cooking liquid + vegetables into a jug or pot. Blend with a stick blender until completely smooth. Return mixture to Instant Pot.",
+      "Finish the gravy: Press Sauté → High. Add ¼ cup white wine and simmer 1–2 minutes to cook off alcohol. Add cornflour slurry while whisking. Simmer until thickened (2–3 minutes). Optional: whisk in 1 tbsp butter for glossy, silky gravy. Season with salt + pepper.",
+      "Serve: Slice chicken, plate with mash or roast vegetables, and spoon over generous amounts of the white-wine gravy."
+    ],
+    "timing": "Total Time: ~1 hour (15 min prep + 30 min pressure + 10-15 min release + 5-7 min air fry) | For bigger chicken (1.8–2.0 kg): 35 minutes pressure cook + 15 min natural release",
+    "recommendedDrinks": [
+      "White wine",
+      "Chardonnay",
+      "Light beer",
+      "Sparkling water with lemon"
+    ],
+    "source": "original"
   }
 ]
