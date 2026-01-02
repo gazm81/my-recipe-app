@@ -466,5 +466,51 @@
       "Sparkling water with lemon"
     ],
     "source": "original"
+  },
+  {
+    "id": "combination-noodle-soup",
+    "title": "Chicken, Prawn & Pork Wonton Combination Noodle Soup",
+    "serves": "4-6",
+    "prepTime": "10-15 mins",
+    "cookTime": "~55-60 mins",
+    "ingredients": [
+      "300-400g chicken wings",
+      "2 chicken drumsticks (≈300-350g total)",
+      "2 whole chicken breasts (≈600g total)",
+      "300g raw prawn meat (fresh or frozen)",
+      "355g Easy Tiger Pork & Prawn Wontons (1 pack)",
+      "300g thick egg noodles (Mr Chen's pack is perfect)",
+      "2-3 heads bok choy (≈300-400g)",
+      "1 medium brown onion",
+      "1 medium carrot",
+      "1 celery stalk",
+      "1 bunch spring onions",
+      "4 garlic cloves",
+      "30g fresh ginger (thumb-sized piece)",
+      "1½ tbsp light soy sauce",
+      "1 tsp fish sauce (optional, subtle)",
+      "1 tsp salt (adjust later)",
+      "½-1 tsp sesame oil (finish)",
+      "¼ tsp white pepper (recommended)",
+      "1.8-2L water",
+      "Optional: chilli oil/chilli crisp, extra fish sauce, black vinegar (adult add-ons)"
+    ],
+    "method": [
+      "Build the Chicken Broth: Add chicken wings, chicken drumsticks, halved onion, roughly chopped carrot, roughly chopped celery, smashed garlic, sliced ginger, light soy sauce (1½ tbsp), salt (1 tsp), and water (1.8-2L, just covering everything) to Instant Pot. Cook on Pressure HIGH for 30 minutes, then natural release for 10 minutes before venting. Remove wings, bones, and veg. Shred meat from drumsticks and return to pot. Taste broth - should be savoury but gentle.",
+      "Cook the Chicken Breasts (Juicy Method): Submerge whole chicken breasts in the hot broth. Pressure HIGH for 4 minutes, natural release for 5 minutes, then vent. Remove breasts, slice, and set aside.",
+      "Cook the Wontons (No Pressure): Switch to Sauté - LOW. Bring broth to a gentle simmer (do not boil). Add wontons and cook until floating with translucent wrappers (≈5-6 min frozen, 3-4 min fresh).",
+      "Add Bok Choy + Prawns: Add bok choy for 2 minutes, then add raw prawn meat for 1-2 minutes until just opaque. Turn heat off immediately.",
+      "Add Noodles: Add egg noodles directly to the hot broth. Let sit until tender (no pressure, no boil). Takes 3-5 minutes.",
+      "Final Lift (Do This Last): Stir in sesame oil (½-1 tsp), white pepper (¼ tsp), and optional fish sauce (½-1 tsp). Stir gently.",
+      "Serving: Layer bowls with noodles, wontons + prawns, sliced chicken breast, broth, and spring onion garnish. Adults can customize at the table with chilli oil, fish sauce, or black vinegar."
+    ],
+    "timing": "Total Time: ~1 hour (10-15 min prep + 55-60 min cooking). Build broth: ~40 min | Cook chicken breasts: 10 min | Cook wontons: 5-6 min | Bok choy + prawns: 3-4 min | Noodles: 3-5 min",
+    "recommendedDrinks": [
+      "Green tea",
+      "Jasmine tea",
+      "Light beer",
+      "Sparkling water"
+    ],
+    "source": "original"
   }
 ]
