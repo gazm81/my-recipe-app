@@ -4,15 +4,14 @@ Instant Pot • Kid-friendly base • Adult add-ons optional
 
 Serves: 4-6
 Prep Time: 10-15 mins
-Cook Time: ~55-60 mins
-Total Time: ~1 hour
+Cook Time: ~40-45 mins
+Total Time: ~45-50 mins
 
 🛒 SHOPPING LIST (WITH QUANTITIES)
 
 🐔 Chicken
 - Chicken wings – 300–400 g
-- Chicken drumsticks – 2 (≈300–350 g total)
-- Chicken breasts – 2 whole (≈600 g total)
+- Chicken drumsticks – 4 (≈600–700 g total)
 
 🍤 Seafood
 - Raw prawn meat – 300 g (fresh or frozen)
@@ -53,7 +52,7 @@ Time: ~40 minutes (mostly hands-off)
 
 Add to Instant Pot:
 - Chicken wings (300–400 g)
-- Chicken drumsticks (2)
+- Chicken drumsticks (4)
 - Onion, halved
 - Carrot, roughly chopped
 - Celery, roughly chopped
@@ -72,15 +71,7 @@ Open lid:
 - Shred meat from drumsticks and return it to the pot
 - Taste broth → should be savoury but gentle.
 
-2️⃣ Cook the Chicken Breasts (Juicy Method)
-Time: 10 minutes
-
-- Submerge whole chicken breasts in the hot broth
-- Pressure HIGH – 4 minutes
-- Natural release – 5 minutes, then vent
-- Remove breasts, slice, set aside.
-
-3️⃣ Cook the Wontons (No Pressure)
+2️⃣ Cook the Wontons (No Pressure)
 Time: 5–6 minutes
 
 - Switch to Sauté – LOW
@@ -91,20 +82,20 @@ Time: 5–6 minutes
   - Wrappers translucent
   (≈5–6 min frozen, 3–4 min fresh)
 
-4️⃣ Bok Choy + Prawns
+3️⃣ Bok Choy + Prawns
 Time: 3–4 minutes
 
 - Add bok choy → 2 minutes
 - Add raw prawn meat → 1–2 minutes, until just opaque
 - Turn heat off immediately
 
-5️⃣ Noodles
+4️⃣ Noodles
 Time: 3–5 minutes
 
 - Add egg noodles directly to the hot broth
 - Let sit until tender (no pressure, no boil)
 
-6️⃣ Final Lift (Do This Last)
+5️⃣ Final Lift (Do This Last)
 - Sesame oil – ½–1 tsp
 - White pepper – ¼ tsp
 - Optional: fish sauce – ½–1 tsp
@@ -113,14 +104,14 @@ Time: 3–5 minutes
 🍜 SERVING ORDER (BEST TEXTURE)
 1. Noodles
 2. Wontons + prawns
-3. Sliced chicken breast
+3. Shredded chicken
 4. Broth
 5. Spring onion garnish
 
 ⏱️ TOTAL TIME
 - Prep: 10–15 min
-- Cooking: ~55–60 min
-- Start to bowls: ~1 hour
+- Cooking: ~40–45 min
+- Start to bowls: ~45-50 min
 
 🧠 FINAL NOTES
 - Kid-safe, clean flavour base
